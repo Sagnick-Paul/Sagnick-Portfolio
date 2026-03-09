@@ -55,7 +55,7 @@ export default function Education() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
@@ -81,7 +81,7 @@ export default function Education() {
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="relative"
                 >
@@ -115,7 +115,7 @@ export default function Education() {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="group flex flex-col sm:flex-row justify-between sm:items-center bg-muted/30 p-5 rounded-2xl border border-border/50 hover:border-accent/50 transition-colors gap-4"
                 >

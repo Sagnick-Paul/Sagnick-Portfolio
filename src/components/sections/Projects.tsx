@@ -47,7 +47,7 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
@@ -65,7 +65,7 @@ export default function Projects() {
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`group relative flex flex-col justify-between bg-muted/20 border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ${project.featured ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-muted/30 to-background' : ''}`}
             >
