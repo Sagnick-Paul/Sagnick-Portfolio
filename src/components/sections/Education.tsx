@@ -55,11 +55,7 @@ export default function Education() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-<<<<<<< HEAD
-          viewport={{ once: false }}
-=======
           viewport={{ once: false, margin: "-50px" }}
->>>>>>> genai
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
@@ -85,11 +81,7 @@ export default function Education() {
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-<<<<<<< HEAD
-                  viewport={{ once: false }}
-=======
                   viewport={{ once: false, margin: "-50px" }}
->>>>>>> genai
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="relative"
                 >
@@ -123,11 +115,7 @@ export default function Education() {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-<<<<<<< HEAD
-                  viewport={{ once: false }}
-=======
                   viewport={{ once: false, margin: "-50px" }}
->>>>>>> genai
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="group flex flex-col sm:flex-row justify-between sm:items-center bg-background border border-border/50 p-5 rounded-2xl gap-4 hover:border-accent/50 transition-colors"
                 >

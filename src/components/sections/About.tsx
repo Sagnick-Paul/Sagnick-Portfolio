@@ -9,11 +9,7 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-<<<<<<< HEAD
-          viewport={{ once: false }}
-=======
           viewport={{ once: false, margin: "-50px" }}
->>>>>>> genai
           transition={{ duration: 0.5 }}
           className="max-w-3xl"
         >

@@ -31,23 +31,19 @@ export default function Research() {
     <section id="research" className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-3 gap-12 items-center">
-          
+
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-<<<<<<< HEAD
-            viewport={{ once: false }}
-=======
             viewport={{ once: false, margin: "-50px" }}
->>>>>>> genai
             transition={{ duration: 0.5 }}
             className="lg:col-span-1 space-y-6"
           >
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">
-              Research Interests & <br/><span className="text-accent text-opacity-90">Current Focus</span>
+              Research Interests & <br /><span className="text-accent text-opacity-90">Current Focus</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              My core philosophy lies in synthesizing software algorithms with physical platforms. 
+              My core philosophy lies in synthesizing software algorithms with physical platforms.
               I am constantly exploring new dimensions in autonomous systems and applied AI.
             </p>
             <div className="pt-4 space-y-3">
@@ -73,14 +69,8 @@ export default function Research() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-<<<<<<< HEAD
-                viewport={{ once: false }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-background border border-border/50 p-6 rounded-2xl hover:border-accent hover:shadow-lg hover:shadow-accent/5 transition-all"
-=======
                 viewport={{ once: false, margin: "-50px" }}
                 className="bg-background border border-border/50 p-6 rounded-2xl hover:border-accent hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 transition-all group"
->>>>>>> genai
               >
                 <div className="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-6">
                   {item.icon}

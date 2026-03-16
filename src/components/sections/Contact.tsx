@@ -13,11 +13,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-<<<<<<< HEAD
-            viewport={{ once: false }}
-=======
             viewport={{ once: false, margin: "-50px" }}
->>>>>>> genai
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">
@@ -63,11 +59,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-<<<<<<< HEAD
-            viewport={{ once: false }}
-=======
             viewport={{ once: false, margin: "-50px" }}
->>>>>>> genai
             transition={{ duration: 0.5, delay: 0.2 }}
             className="bg-background border border-border/50 p-8 rounded-3xl"
           >
