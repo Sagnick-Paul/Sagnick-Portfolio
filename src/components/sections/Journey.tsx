@@ -97,6 +97,7 @@ const TimelineNode = ({ isEven, isLast }: { isEven: boolean; isLast: boolean }) 
 );
 
 export default function Journey() {
+<<<<<<< HEAD
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -104,6 +105,23 @@ export default function Journey() {
     });
 
     const [expandedId, setExpandedId] = useState<number | null>(null);
+=======
+  const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+
+  const { scrollYProgress: sectionScrollY } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const blob1Y = useTransform(sectionScrollY, [0, 1], ["-50%", "50%"]);
+  const blob2Y = useTransform(sectionScrollY, [0, 1], ["50%", "-50%"]);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+>>>>>>> genai
 
     const toggleExpand = (id: number) => {
         setExpandedId(expandedId === id ? null : id);
@@ -111,6 +129,7 @@ export default function Journey() {
 
     const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
+<<<<<<< HEAD
     return (
         <section id="journey" className="py-20 relative overflow-hidden bg-background">
             {/* Background glowing effects to enhance tech aesthetic */}
@@ -132,6 +151,28 @@ export default function Journey() {
                         Tracing the path from software fundamentals to advanced robotics and machine learning research.
                     </p>
                 </motion.div>
+=======
+  return (
+    <section ref={sectionRef} id="journey" className="py-20 relative overflow-hidden bg-background">
+      {/* Background glowing effects to enhance tech aesthetic */}
+      <motion.div style={{ y: blob1Y }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <motion.div style={{ y: blob2Y }} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+            AI & Engineering Journey
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            Tracing the path from software fundamentals to advanced robotics and machine learning research.
+          </p>
+        </motion.div>
+>>>>>>> genai
 
                 <div className="relative max-w-5xl mx-auto" ref={containerRef}>
                     {/* Main vertical line */}
@@ -154,6 +195,7 @@ export default function Journey() {
                             const isEven = index % 2 === 0;
                             const isExpanded = expandedId === milestone.id;
 
+<<<<<<< HEAD
                             return (
                                 <div key={milestone.id} className="relative flex md:justify-between items-center w-full group">
                                     {/* Timeline Node overlay logic */}
@@ -168,6 +210,22 @@ export default function Journey() {
                                             <div className="h-3 w-3 rounded-full bg-white animate-pulse" />
                                         </motion.div>
                                     </div>
+=======
+                  {/* Content Card */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false, margin: "-50px" }}
+                    transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+                    className={`w-full md:w-5/12 pl-16 md:pl-0 ${isEven ? 'md:pr-12 md:text-right order-1' : 'md:pl-12 md:text-left order-2'}`}
+                  >
+                    <div
+                      className={`relative bg-background border border-border/50 rounded-2xl p-6 cursor-pointer overflow-hidden group/card text-left hover:border-accent/50 transition-colors`}
+                      onClick={() => toggleExpand(milestone.id)}
+                    >
+                      {/* Subtle hover gradient behind content */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
+>>>>>>> genai
 
                                     {/* Desktop Empty Space for alignment */}
                                     <div className={`hidden md:block w-5/12 ${isEven ? 'order-2' : 'order-1'}`} />

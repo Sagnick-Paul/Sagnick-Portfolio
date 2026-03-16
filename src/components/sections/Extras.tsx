@@ -38,7 +38,11 @@ export default function Extras() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+<<<<<<< HEAD
           viewport={{ once: false }}
+=======
+          viewport={{ once: false, margin: "-50px" }}
+>>>>>>> genai
           transition={{ duration: 0.5 }}
           className="mb-16 text-center lg:text-left"
         >
@@ -56,7 +60,11 @@ export default function Extras() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
+<<<<<<< HEAD
             viewport={{ once: false }}
+=======
+            viewport={{ once: false, margin: "-50px" }}
+>>>>>>> genai
             transition={{ duration: 0.5 }}
             className="bg-background border border-border/50 p-6 md:p-8 rounded-3xl"
           >
@@ -89,7 +97,11 @@ export default function Extras() {
                 key={index}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
+<<<<<<< HEAD
                 viewport={{ once: false }}
+=======
+                viewport={{ once: false, margin: "-50px" }}
+>>>>>>> genai
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex gap-6 p-6 bg-background rounded-2xl border border-border/50 hover:border-accent/50 transition-colors group"
               >

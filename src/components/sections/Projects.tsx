@@ -1,10 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
+import { useRef } from "react";
 
 export default function Projects() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const blob1Y = useTransform(scrollYProgress, [0, 1], ["-30%", "30%"]);
+  const blob2Y = useTransform(scrollYProgress, [0, 1], ["30%", "-30%"]);
+
   const projects = [
     {
       title: "Brain MRI Tumor Segmentation",
@@ -42,12 +52,19 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} id="projects" className="py-24 bg-background relative overflow-hidden">
+      {/* Dynamic Parallax Background shapes specific to Projects */}
+      <motion.div style={{ y: blob1Y }} className="absolute top-[20%] -left-[10%] w-72 h-72 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+      <motion.div style={{ y: blob2Y }} className="absolute bottom-[20%] -right-[10%] w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+<<<<<<< HEAD
           viewport={{ once: false }}
+=======
+          viewport={{ once: false, margin: "-50px" }}
+>>>>>>> genai
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
@@ -65,9 +82,13 @@ export default function Projects() {
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
+<<<<<<< HEAD
               viewport={{ once: false }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`group relative flex flex-col justify-between bg-muted/20 border border-border/50 rounded-2xl p-6 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ${project.featured ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-muted/30 to-background' : ''}`}
+=======
+              className={`group relative flex flex-col justify-between bg-background border border-border/50 rounded-2xl p-6 hover:-translate-y-2 hover:border-accent/50 transition-all ${project.featured ? 'md:col-span-2 lg:col-span-2' : ''}`}
+>>>>>>> genai
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
