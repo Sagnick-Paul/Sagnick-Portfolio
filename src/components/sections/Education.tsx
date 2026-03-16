@@ -55,7 +55,7 @@ export default function Education() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
@@ -81,12 +81,12 @@ export default function Education() {
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="relative"
                 >
                   <div className="absolute w-3 h-3 bg-accent rounded-full -left-[31px] top-1.5" />
-                  <div className="bg-muted/30 p-6 rounded-2xl border border-border/50 hover:border-accent/50 transition-colors">
+                  <div className="bg-background border border-border/50 p-6 rounded-2xl hover:border-accent/50 transition-colors">
                     <div className="flex justify-between items-start mb-2">
                       <h4 className="text-xl font-semibold text-foreground">{item.institution}</h4>
                       <span className="text-sm text-accent bg-accent/10 px-3 py-1 rounded-full whitespace-nowrap">
@@ -115,9 +115,9 @@ export default function Education() {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="group flex flex-col sm:flex-row justify-between sm:items-center bg-muted/30 p-5 rounded-2xl border border-border/50 hover:border-accent/50 transition-colors gap-4"
+                  className="group flex flex-col sm:flex-row justify-between sm:items-center bg-background border border-border/50 p-5 rounded-2xl gap-4 hover:border-accent/50 transition-colors"
                 >
                   <div className="flex items-start gap-4">
                     <div className="p-2 bg-background rounded-lg border border-border group-hover:bg-accent/10 transition-colors shrink-0">

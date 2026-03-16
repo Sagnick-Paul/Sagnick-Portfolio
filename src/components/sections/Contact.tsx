@@ -13,7 +13,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">
@@ -59,16 +59,16 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-muted/30 p-8 rounded-3xl border border-border"
+            className="bg-background border border-border/50 p-8 rounded-3xl"
           >
             <h3 className="text-2xl font-bold mb-6">Quick Links</h3>
             <div className="space-y-4">
               <Link
                 href="https://linkedin.com/in/sagnick-paul-9aa30a352"
                 target="_blank"
-                className="flex items-center justify-between p-4 bg-background rounded-2xl border border-border hover:border-accent hover:shadow-lg hover:shadow-accent/5 transition-all group"
+                className="flex items-center justify-between p-4 bg-muted/30 border border-border/50 rounded-2xl group hover:border-accent/50 transition-colors"
               >
                 <div className="flex items-center gap-4">
                   <div className="font-medium">LinkedIn Profile</div>
@@ -78,7 +78,7 @@ export default function Contact() {
               <Link
                 href="https://github.com/Sagnick-Paul"
                 target="_blank"
-                className="flex items-center justify-between p-4 bg-background rounded-2xl border border-border hover:border-accent hover:shadow-lg hover:shadow-accent/5 transition-all group"
+                className="flex items-center justify-between p-4 bg-muted/30 border border-border/50 rounded-2xl group hover:border-accent/50 transition-colors"
               >
                 <div className="flex items-center gap-4">
                   <div className="font-medium">GitHub Repository</div>

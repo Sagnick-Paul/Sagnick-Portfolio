@@ -97,12 +97,20 @@ const TimelineNode = ({ isEven, isLast }: { isEven: boolean; isLast: boolean }) 
 );
 
 export default function Journey() {
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"],
   });
 
+  const { scrollYProgress: sectionScrollY } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const blob1Y = useTransform(sectionScrollY, [0, 1], ["-50%", "50%"]);
+  const blob2Y = useTransform(sectionScrollY, [0, 1], ["50%", "-50%"]);
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const toggleExpand = (id: number) => {
@@ -112,16 +120,15 @@ export default function Journey() {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="journey" className="py-20 relative overflow-hidden bg-background">
+    <section ref={sectionRef} id="journey" className="py-20 relative overflow-hidden bg-background">
       {/* Background glowing effects to enhance tech aesthetic */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
-
+      <motion.div style={{ y: blob1Y }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <motion.div style={{ y: blob2Y }} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
@@ -181,7 +188,7 @@ export default function Journey() {
                     className={`w-full md:w-5/12 pl-16 md:pl-0 ${isEven ? 'md:pr-12 md:text-right order-1' : 'md:pl-12 md:text-left order-2'}`}
                   >
                     <div
-                      className={`relative bg-card border border-border/50 rounded-2xl p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-blue-500/30 hover:shadow-blue-500/10 cursor-pointer overflow-hidden group/card text-left`}
+                      className={`relative bg-background border border-border/50 rounded-2xl p-6 cursor-pointer overflow-hidden group/card text-left hover:border-accent/50 transition-colors`}
                       onClick={() => toggleExpand(milestone.id)}
                     >
                       {/* Subtle hover gradient behind content */}

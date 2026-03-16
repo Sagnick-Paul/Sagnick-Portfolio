@@ -35,7 +35,7 @@ export default function Research() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 0.5 }}
             className="lg:col-span-1 space-y-6"
           >
@@ -69,9 +69,8 @@ export default function Research() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-background border border-border/50 p-6 rounded-2xl hover:border-accent hover:shadow-lg hover:shadow-accent/5 transition-all"
+                viewport={{ once: false, margin: "-50px" }}
+                className="bg-background border border-border/50 p-6 rounded-2xl hover:border-accent hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 transition-all group"
               >
                 <div className="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-6">
                   {item.icon}

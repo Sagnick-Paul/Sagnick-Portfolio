@@ -48,7 +48,7 @@ export default function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false, margin: "-50px" }}
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
@@ -66,8 +66,9 @@ export default function Skills() {
               key={categoryIndex}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false, margin: "-50px" }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+              className="bg-background border border-border/50 p-8 rounded-2xl hover:border-accent hover:shadow-lg hover:shadow-accent/5 transition-all"
             >
               <h3 className="text-xl font-semibold mb-6 flex items-center text-foreground">
                 {category.title}
@@ -83,7 +84,7 @@ export default function Skills() {
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false, margin: "-50px" }}
                         transition={{ duration: 1, delay: index * 0.1 + 0.2, ease: "easeOut" }}
                         className="h-full bg-accent rounded-full"
                       />

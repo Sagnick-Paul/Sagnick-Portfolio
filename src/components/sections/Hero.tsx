@@ -1,16 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
+import { useRef } from "react";
+import { DecorativeFloatingShapes } from "@/components/ui/FloatingElements";
 
 export default function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const blob1Y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const blob2Y = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
+    <section ref={ref} className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
+      <DecorativeFloatingShapes />
       {/* Background gradients for abstract dark/light aesthetic */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 bg-background">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-accent/20 dark:bg-accent/10 pointer-events-none" />
-        <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] rounded-full blur-[120px] bg-blue-500/20 dark:bg-blue-900/20 pointer-events-none" />
+        <motion.div 
+          style={{ y: blob1Y }}
+          className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-accent/20 dark:bg-accent/10 pointer-events-none" 
+        />
+        <motion.div 
+          style={{ y: blob2Y }}
+          className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] rounded-full blur-[120px] bg-blue-500/20 dark:bg-blue-900/20 pointer-events-none" 
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
