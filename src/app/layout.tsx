@@ -5,6 +5,11 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { MouseGlow } from "@/components/ui/MouseGlow";
+import dynamic from "next/dynamic";
+
+const AIAssistant = dynamic(() => import("@/components/ui/AIAssistant"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <MouseGlow />
+          <AIAssistant />
           <div className="flex min-h-screen flex-col relative z-[5]">
             <Navbar />
             <main className="flex-1">{children}</main>
