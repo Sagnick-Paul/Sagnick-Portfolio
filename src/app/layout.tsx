@@ -16,6 +16,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Sagnick Paul | Portfolio",
   description: "Electrical Engineering Undergraduate specializing in AI, Machine Learning, and Robotics.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

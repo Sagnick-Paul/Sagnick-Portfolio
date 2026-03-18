@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Menu, X } from "lucide-react";
 
@@ -36,11 +37,19 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-xl font-bold tracking-tighter">
-              Sagnick Paul<span className="text-accent">.</span>
+            <Link href="/" className="flex items-center gap-3 text-xl font-bold tracking-tighter group">
+              <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-accent/20 group-hover:border-accent/40 transition-colors">
+                <Image
+                  src="/favicon.png"
+                  alt="Sagnick Paul Logo"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <span className="group-hover:text-accent transition-colors">
+                Sagnick Paul<span className="text-accent">.</span>
+              </span>
             </Link>
-          </div>
           
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
