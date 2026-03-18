@@ -86,7 +86,7 @@ export default function Contact() {
                 <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors" />
               </Link>
               <Link
-                href="/resume.pdf"
+                href="/Sagnick_CV.pdf"
                 target="_blank"
                 className="flex items-center justify-between p-4 bg-accent text-accent-foreground rounded-2xl shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all group"
               >

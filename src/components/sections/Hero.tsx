@@ -67,7 +67,7 @@ export default function Hero() {
                 View Projects
               </Link>
               <Link
-                href="/resume.pdf" // Placeholder, user will provide actual resume
+                href="/Sagnick_CV.pdf"
                 target="_blank"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-border bg-background hover:bg-muted font-medium transition-colors gap-2"
               >
