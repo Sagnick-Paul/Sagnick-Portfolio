@@ -109,59 +109,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/Sagnick-Paul/Jet-Image-Classification-CNN",
     },
-    featured: false,
-  },
-  {
-    id: "employee-turnover-analytics",
-    title: "Employee Turnover Analytics",
-    description: "Developed classification models and performed Exploratory Data Analysis (EDA) to predict employee attrition and identify key driving factors.",
-    techStack: ["Data Science", "Classification", "EDA", "Python", "Scikit-Learn", "Seaborn"],
-    images: [
-      "/projects/hr-1.jpg"
-    ],
-    problem: "High employee turnover costs companies significant time and resources. HR departments need statistical evidence of why employees leave and predictive indicators to proactively retain top talent.",
-    approach: "Conducted extensive EDA using statistical tests to find correlations between metrics (e.g., salary, working hours, satisfaction) and attrition. Trained and evaluated multiple classification models including Random Forest, XGBoost, and Logistic Regression.",
-    architecture: "A Jupyter Notebook driven pipeline utilizing Pandas for data wrangling, Matplotlib/Seaborn for visualization, and Scikit-Learn pipelines for data scaling, imputation, and model cross-validation.",
-    challenges: [
-      "The dataset was highly imbalanced, with far fewer leaving employees than retained ones, requiring Synthetic Minority Over-sampling Technique (SMOTE).",
-      "Interpreting black-box models to extract actionable, human-readable HR insights.",
-      "Handling missing values and categorical encodings effectively without introducing data leakage."
-    ],
-    results: [
-      "XGBoost model achieved an F1-score of 0.89 in predicting employee flight risk.",
-      "Identified 'overworking' and 'lack of promotion' as the top two driving factors for turnover.",
-      "Provided actionable metrics allowing the HR team to focus retention budgets on high-risk employee segments."
-    ],
-    links: {
-      github: "https://github.com/Sagnick-Paul",
-    },
-    featured: false,
-  },
-  {
-    id: "song-cohort-analysis",
-    title: "Song Cohort Analysis",
-    description: "Performed cohort and clustering-based analysis to study music consumption behavior, utilizing unsupervised learning techniques.",
-    techStack: ["Clustering", "Unsupervised Learning", "Data Analysis", "K-Means", "Python"],
-    images: [
-      "/projects/music-1.jpg"
-    ],
-    problem: "Music streaming platforms need to understand nuanced listener behaviors beyond basic genres. Mapping out how cohorts of users consume audio features is key to building effective recommendation engines.",
-    approach: "Extracted audio features (acousticness, danceability, energy) from a large music dataset. Applied elbow methods and silhouette scores to determine optimal clusters, then utilized K-Means clustering to group songs into functional cohorts.",
-    architecture: "Python-based analytical scripts utilizing Scikit-Learn for the clustering algorithms and Plotly for generating interactive 3D visualizations of the latent feature space.",
-    challenges: [
-      "Normalizing disparate audio features that exist on entirely different numerical scales.",
-      "Interpreting the abstract mathematical clusters into tangible, real-world music categorizations.",
-      "Processing and clustering a large-scale dataset efficiently within memory constraints."
-    ],
-    results: [
-      "Successfully segmented the dataset into 5 distinct listening cohorts, each with identifiable acoustic archetypes.",
-      "Revealed hidden correlations, such as how high danceability strongly correlated with low acousticness in modern distinct cohorts.",
-      "The identified clusters laid the statistical groundwork for an improved, feature-aware song recommendation matrix."
-    ],
-    links: {
-      github: "https://github.com/Sagnick-Paul",
-    },
-    featured: false,
+    featured: true,
   }
 ];
 
