@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Education from "@/components/sections/Education";
@@ -8,10 +9,15 @@ import Research from "@/components/sections/Research";
 import Contact from "@/components/sections/Contact";
 import Extras from "@/components/sections/Extras";
 
+const MotorParallaxSection = dynamic(() => import("@/components/sections/MotorParallaxSection"), {
+  ssr: false,
+});
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
+      <MotorParallaxSection />
       <About />
       <Education />
       <Journey />
