@@ -35,7 +35,7 @@ export default function Research() {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+          viewport={{ once: false }}
             transition={{ duration: 0.8 }}
             className="lg:col-span-1 space-y-10"
           >
@@ -71,7 +71,7 @@ export default function Research() {
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card p-8 hover:border-blue-500/30 hover:shadow-[0_0_40px_rgba(37,99,235,0.1)] transition-all duration-500 group"
               >

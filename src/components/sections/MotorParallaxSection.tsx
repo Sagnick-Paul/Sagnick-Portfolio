@@ -30,7 +30,7 @@ export default function MotorParallaxSection() {
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col justify-center space-y-10"
         >
@@ -68,7 +68,7 @@ export default function MotorParallaxSection() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1 }}
           className="relative w-full max-w-2xl mx-auto rounded-[32px] overflow-hidden glass-card p-4 border-blue-500/20 shadow-[0_0_50px_rgba(37,99,235,0.1)] group"
         >

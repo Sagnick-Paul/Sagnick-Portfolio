@@ -31,7 +31,7 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
@@ -53,7 +53,7 @@ export default function Projects() {
               key={index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: index * 0.1 }}
               className={`group relative flex flex-col justify-between glass-card p-8 hover:border-blue-500/50 hover:shadow-[0_0_50px_rgba(37,99,235,0.15)] transition-all duration-700 ${project.featured ? 'md:col-span-2 lg:col-span-2' : ''}`}
             >
@@ -130,7 +130,7 @@ export default function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-20 text-center z-10 relative"
         >

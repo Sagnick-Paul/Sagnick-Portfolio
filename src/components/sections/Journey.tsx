@@ -106,7 +106,7 @@ function MilestoneCard({
                     <motion.div
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-80px" }}
+                        viewport={{ once: false, margin: "-80px" }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         className="w-full max-w-md"
                     >
@@ -141,7 +141,7 @@ function MilestoneCard({
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-80px" }}
+                        viewport={{ once: false, margin: "-80px" }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <MilestoneContent
@@ -158,7 +158,7 @@ function MilestoneCard({
                     <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-80px" }}
+                        viewport={{ once: false, margin: "-80px" }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         className="hidden md:block w-full max-w-md"
                     >

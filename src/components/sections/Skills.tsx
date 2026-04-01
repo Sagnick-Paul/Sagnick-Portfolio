@@ -48,7 +48,7 @@ export default function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
           className="mb-20 text-center md:text-left"
         >
@@ -67,7 +67,7 @@ export default function Skills() {
               key={categoryIndex}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
               className="glass-card p-10 hover:border-blue-500/30 transition-all duration-500 group"
             >
@@ -86,7 +86,7 @@ export default function Skills() {
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 1.5, delay: index * 0.1 + 0.3, ease: "circOut" }}
                         className="h-full bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.4)] relative"
                       >
