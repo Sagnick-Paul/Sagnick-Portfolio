@@ -256,7 +256,7 @@ export default function Journey() {
                         transition={{ duration: 1, ease: "easeOut" }}
                         className="flex flex-col items-center gap-3"
                     >
-                        <h2 className="text-6xl md:text-8xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground via-foreground/80 to-foreground/20 leading-none select-none">
+                        <h2 className="text-5xl md:text-7xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground via-foreground/100 to-foreground/50 leading-none select-none">
                             JOURNEY
                         </h2>
                         <div className="flex items-center gap-5 text-muted-foreground/60 mt-4 px-6 py-2 bg-background/50 backdrop-blur-sm rounded-full border border-white/5">
