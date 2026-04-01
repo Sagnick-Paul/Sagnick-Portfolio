@@ -65,7 +65,7 @@ export default function Education() {
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-slate-900 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-slate-900 dark:text-white">
             Educational <span className="neon-text">Vector</span>
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl text-lg font-medium">
@@ -143,32 +143,34 @@ export default function Education() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-[#030712]/90 backdrop-blur-md"
+            onClick={() => setSelectedCert(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-slate-900/70 dark:bg-black/80 backdrop-blur-lg"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 30 }}
-              className="relative w-full max-w-5xl h-[85vh] bg-[#030712] border border-blue-500/20 rounded-[32px] shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl h-[85vh] bg-[hsl(var(--background))] dark:bg-slate-950 border border-blue-500/20 rounded-[32px] shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col"
             >
               <div className="flex items-center justify-between p-6 border-b border-blue-500/10 bg-blue-500/5">
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
                     <Award className="h-6 w-6 text-blue-500" />
                   </div>
-                  <h3 className="text-xl font-bold text-white line-clamp-1 italic tracking-tight">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white line-clamp-1 italic tracking-tight">
                     {selectedCert.name}
                   </h3>
                 </div>
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="p-3 hover:bg-white/10 rounded-2xl transition-all active:scale-90"
+                  className="p-3 hover:bg-blue-500/10 rounded-2xl transition-all active:scale-90"
                 >
-                  <X className="h-6 w-6 text-white" />
+                  <X className="h-6 w-6 text-slate-700 dark:text-white" />
                 </button>
               </div>
 
-              <div className="flex-1 bg-black relative">
+              <div className="flex-1 relative">
                 <iframe
                   src={selectedCert.url}
                   className="w-full h-full border-none"
@@ -188,7 +190,6 @@ export default function Education() {
                 </div>
               </div>
             </motion.div>
-            <div className="absolute inset-0 -z-10" onClick={() => setSelectedCert(null)} />
           </motion.div>
         )}
       </AnimatePresence>

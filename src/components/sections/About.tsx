@@ -21,7 +21,7 @@ export default function About() {
         >
           {/* Header with neon underline */}
           <div className="relative mb-12 inline-block">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
               About Me<span className="text-blue-500">_</span>
             </h2>
             <div className="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-blue-500 to-transparent rounded-full" />

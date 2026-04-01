@@ -26,7 +26,7 @@ export default function Contact() {
               <div className="h-0.5 w-12 bg-blue-600" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono">Channel Open</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic leading-none mb-8">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic leading-none mb-8">
               Establish <span className="neon-text">Liaison</span>
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg mb-12 max-w-md font-medium leading-relaxed">

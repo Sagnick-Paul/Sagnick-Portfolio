@@ -39,7 +39,7 @@ export default function MotorParallaxSection() {
               <div className="h-0.5 w-12 bg-blue-600" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Physical_Core</span>
             </div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
               The Machine <br /> <span className="neon-text animate-glow-pulse">Behind</span> <br /> the Engineer
             </h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 space-x-2 rounded-full mt-6" />

@@ -3,24 +3,13 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, ArrowRight, Eye, X } from "lucide-react";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { projects, Project } from "@/data/projects";
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Prevent scrolling when modal is open
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedProject]);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -50,7 +39,7 @@ export default function Projects() {
             <div className="h-0.5 w-12 bg-blue-600" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono">Systems Catalog</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic">
             Featured <span className="neon-text">Research</span>
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl text-lg font-medium mt-6">
@@ -152,27 +141,24 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      {/* Quick View Modal Redesign */}
+      {/* Quick View Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedProject(null)}
-              className="absolute inset-0 bg-[#030712]/90 backdrop-blur-md"
-            />
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6 bg-slate-900/70 dark:bg-black/80 backdrop-blur-lg"
+            onClick={() => setSelectedProject(null)}
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
-              className="relative w-full max-w-3xl bg-[#030712] border border-blue-500/20 rounded-[32px] shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden z-10"
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-3xl bg-[hsl(var(--background))] dark:bg-slate-950 border border-blue-500/20 rounded-[32px] shadow-[0_0_80px_rgba(0,0,0,0.5)] overflow-hidden z-10"
             >
               <div className="p-10 relative">
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-8 right-8 p-3 rounded-2xl bg-white/5 text-slate-400 hover:text-white hover:bg-red-500/20 transition-all"
+                  className="absolute top-8 right-8 p-3 rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 hover:bg-red-100 dark:hover:bg-red-500/20 hover:text-red-600 dark:hover:text-white transition-all"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -182,11 +168,11 @@ export default function Projects() {
                   <span className="text-[10px] font-black tracking-[0.5em] text-blue-500 uppercase font-mono italic">Diagnostic Report</span>
                 </div>
                 
-                <h3 className="text-4xl font-black text-white mb-8 pr-12 uppercase italic">{selectedProject.title}</h3>
+                <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-8 pr-12 uppercase italic">{selectedProject.title}</h3>
                 
                 <div className="flex flex-wrap gap-3 mb-10">
                   {selectedProject.techStack.map((tech, i) => (
-                    <span key={i} className="text-[10px] font-black uppercase tracking-widest px-4 py-2 bg-blue-500/10 text-blue-400 rounded-xl border border-blue-500/20">
+                    <span key={i} className="text-[10px] font-black uppercase tracking-widest px-4 py-2 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-xl border border-blue-500/20">
                       {tech}
                     </span>
                   ))}
@@ -195,19 +181,19 @@ export default function Projects() {
                 <div className="space-y-8 mb-12">
                   <div>
                     <h4 className="text-[10px] font-black text-blue-500/60 uppercase tracking-[0.3em] mb-3">Overview</h4>
-                    <p className="text-slate-400 leading-relaxed font-medium">
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                       {selectedProject.description}
                     </p>
                   </div>
                   <div>
                     <h4 className="text-[10px] font-black text-blue-500/60 uppercase tracking-[0.3em] mb-3">Target Objective</h4>
-                    <p className="text-slate-400 text-sm leading-relaxed font-medium">
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-medium">
                       {selectedProject.problem}
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex flex-wrap gap-4 pt-10 border-t border-white/5">
+                <div className="flex flex-wrap gap-4 pt-10 border-t border-slate-200 dark:border-white/5">
                   <Link 
                     href={`/project/${selectedProject.id}`}
                     className="flex-1 min-w-[200px] flex items-center justify-center px-8 py-4 rounded-xl bg-blue-600 text-white font-black tracking-[0.2em] text-xs uppercase hover:bg-blue-500 transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)]"
@@ -219,7 +205,7 @@ export default function Projects() {
                       <Link 
                         href={selectedProject.links.github}
                         target="_blank"
-                        className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
+                        className="w-14 h-14 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
                       >
                         <Github className="w-6 h-6" />
                       </Link>
@@ -228,7 +214,7 @@ export default function Projects() {
                       <Link 
                         href={selectedProject.links.live}
                         target="_blank"
-                        className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
+                        className="w-14 h-14 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
                       >
                         <ExternalLink className="w-6 h-6" />
                       </Link>

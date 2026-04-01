@@ -88,13 +88,13 @@ export default function Hero() {
                 ))}
               </div>
 
-              <h1 className="text-5xl md:text-8xl font-black tracking-tight leading-[0.9] mb-4 text-slate-900 dark:text-white">
+              <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-[0.9] mb-4 text-slate-900 dark:text-white">
                 Hi, I'm <br />
                 <span className="neon-text animate-glow-pulse block py-2 drop-shadow-[0_0_15px_rgba(0,212,255,0.4)]">
                   Sagnick Paul
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl font-medium leading-relaxed">
+              <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl font-medium leading-relaxed">
                 Engineering intelligent systems with 
                 <span className="text-blue-600 dark:text-blue-400 font-bold mx-1">Advanced AI</span>, 
                 <span className="text-cyan-600 dark:text-cyan-400 font-bold mx-1">Control Theory</span>, 

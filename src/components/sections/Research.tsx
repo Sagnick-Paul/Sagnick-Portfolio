@@ -43,7 +43,7 @@ export default function Research() {
               <div className="h-0.5 w-12 bg-blue-600" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Investigation Scope</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-none">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-none">
               Research <span className="neon-text">Focus</span>
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed font-medium">

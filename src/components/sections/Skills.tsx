@@ -52,7 +52,7 @@ export default function Skills() {
           transition={{ duration: 0.8 }}
           className="mb-20 text-center md:text-left"
         >
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-slate-900 dark:text-white uppercase italic">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-slate-900 dark:text-white uppercase italic">
             Neural <span className="neon-text">Capabilities</span>
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl text-lg font-medium">

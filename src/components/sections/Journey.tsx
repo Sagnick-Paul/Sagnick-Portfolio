@@ -290,7 +290,7 @@ export default function Journey() {
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Chronicle</span>
                         <div className="h-0.5 w-12 bg-blue-600" />
                     </div>
-                    <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-none">
+                    <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-none">
                         The <span className="neon-text">Journey</span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 text-lg font-medium mt-6 max-w-xl mx-auto">
