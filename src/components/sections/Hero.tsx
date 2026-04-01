@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring, useReducedM
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import { useRef, MouseEvent } from "react";
-import { DecorativeFloatingShapes } from "@/components/ui/FloatingElements";
+import { GridBackground } from "@/components/ui/GridBackground";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,12 +46,12 @@ export default function Hero() {
     y.set(0);
   };
 
+  const roles = ["AI Researcher", "Control Systems", "Data Science"];
+
   return (
     <section ref={ref} className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
-      <DecorativeFloatingShapes />
-      {/* Background for vibrant glassmorphism */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 bg-slate-50 dark:bg-slate-950/20" />
-
+      <GridBackground />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <motion.div
           onMouseMove={handleMouseMove}
@@ -63,102 +63,152 @@ export default function Hero() {
             y: shouldReduceMotion ? 0 : translateY,
             transformStyle: "preserve-3d",
           }}
-          className="flex flex-col md:flex-row items-center justify-between gap-12 bg-white/40 dark:bg-white/10 backdrop-blur-xl border border-white/60 dark:border-white/20 rounded-3xl p-8 md:p-12 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] will-change-transform"
+          className="flex flex-col lg:flex-row items-center justify-between gap-12 glass-card p-8 md:p-16 relative overflow-hidden group/card transition-all duration-700"
         >
+          {/* Subtle Internal Glow */}
+          <div className="absolute -inset-[100%] bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-500/5 group-hover/card:animate-pulse -z-10" />
 
-          <div className="flex-1 space-y-8">
+          <div className="flex-1 space-y-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <h2 className="text-slate-600 dark:text-cyan-400 font-medium tracking-wide mb-2">
-                Electrical Engineering Undergraduate
-              </h2>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-4 text-slate-800 dark:text-white">
-                Hi, I'm <span className="bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent block mt-2 pb-2">Sagnick Paul</span>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {roles.map((role, i) => (
+                  <motion.span
+                    key={role}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 + 0.5 }}
+                    className="px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-full"
+                  >
+                    {role}
+                  </motion.span>
+                ))}
+              </div>
+
+              <h1 className="text-5xl md:text-8xl font-black tracking-tight leading-[0.9] mb-4 text-slate-900 dark:text-white">
+                Hi, I'm <br />
+                <span className="neon-text animate-glow-pulse block py-2 drop-shadow-[0_0_15px_rgba(0,212,255,0.4)]">
+                  Sagnick Paul
+                </span>
               </h1>
-              <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl font-light">
-                Bridging the gap between software and hardware through
-                <span className="text-slate-800 dark:text-slate-200 font-medium"> Artificial Intelligence</span>,
-                <span className="text-slate-800 dark:text-slate-200 font-medium"> Machine Learning</span>, and
-                <span className="text-slate-800 dark:text-slate-200 font-medium"> Robotics</span>.
+              <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl font-medium leading-relaxed">
+                Engineering intelligent systems with 
+                <span className="text-blue-600 dark:text-blue-400 font-bold mx-1">Advanced AI</span>, 
+                <span className="text-cyan-600 dark:text-cyan-400 font-bold mx-1">Control Theory</span>, 
+                and <span className="text-indigo-600 dark:text-indigo-400 font-bold mx-1">Scalable Software</span> architectures.
               </p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-wrap gap-6"
             >
               <Link
                 href="#projects"
-                className="relative inline-flex items-center justify-center px-6 py-3 rounded-full bg-foreground text-background font-medium hover:bg-foreground/90 transition-all group overflow-hidden"
+                className="relative inline-flex items-center justify-center px-10 py-4 rounded-xl bg-blue-600 text-white font-bold tracking-widest text-sm uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] overflow-hidden group/btn"
               >
-                <span className="relative z-10">View Projects</span>
-                {/* Constant Blue Glow Effect */}
-                <div className="absolute inset-0 -z-10 bg-accent/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-0 bg-accent animate-pulse-slow blur-xl opacity-40 mix-blend-screen pointer-events-none" style={{ animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' }} />
-                <style jsx>{`
-                  @keyframes pulse {
-                    0%, 100% { opacity: 0.2; transform: scale(1); }
-                    50% { opacity: 0.5; transform: scale(1.05); }
-                  }
-                `}</style>
+                <span className="relative z-10 flex items-center gap-2">
+                  View Systems <ArrowDown className="w-4 h-4 transition-transform group-hover/btn:translate-y-1" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
               </Link>
               <Link
                 href="/Sagnick_CV.pdf"
                 target="_blank"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-border bg-background hover:bg-muted font-medium transition-colors gap-2"
+                className="inline-flex items-center justify-center px-10 py-4 rounded-xl border-2 border-blue-500/30 dark:border-blue-400/20 bg-transparent text-slate-700 dark:text-slate-300 font-bold tracking-widest text-sm uppercase transition-all duration-300 hover:bg-blue-500/5 hover:border-blue-500/50 gap-2"
               >
-                <Download className="w-4 h-4" /> Download CV
+                <Download className="w-4 h-4" /> Download Resume
               </Link>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex gap-6 items-center pt-4"
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex gap-4 items-center pt-8 border-t border-blue-500/10"
             >
-              <Link href="https://github.com/Sagnick-Paul" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors p-2 -ml-2">
-                <Github className="w-6 h-6" />
-                <span className="sr-only">GitHub</span>
-              </Link>
-              <Link href="https://linkedin.com/in/sagnick-paul-9aa30a352" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors p-2">
-                <Linkedin className="w-6 h-6" />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-              <Link href="mailto:sp.professional2005@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors p-2">
-                <Mail className="w-6 h-6" />
-                <span className="sr-only">Email</span>
-              </Link>
+              {[
+                { icon: Github, href: "https://github.com/Sagnick-Paul", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com/in/sagnick-paul-9aa30a352", label: "LinkedIn" },
+                { icon: Mail, href: "mailto:sp.professional2005@gmail.com", label: "Email" },
+              ].map(({ icon: Icon, href, label }) => (
+                <Link 
+                  key={label}
+                  href={href} 
+                  target="_blank" 
+                  className="w-12 h-12 flex items-center justify-center rounded-xl border border-blue-500/10 text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 hover:border-blue-500/30 dark:hover:bg-blue-500/10 transition-all duration-300 group"
+                  aria-label={label}
+                >
+                  <Icon className="w-5 h-5 transition-transform group-hover:scale-125 group-hover:rotate-6" />
+                </Link>
+              ))}
             </motion.div>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex-1 hidden lg:flex justify-end"
+            transition={{ duration: 1, delay: 0.5, ease: "circOut" }}
+            className="flex-1 hidden lg:flex justify-end relative"
           >
-            {/* Minimalist Tech Illustration / Placeholder */}
-            <div className="relative w-[400px] h-[400px]">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 dark:from-cyan-500/20 to-transparent rounded-full border border-slate-200 dark:border-slate-800 animate-[spin_10s_linear_infinite]" />
-              <div className="absolute inset-4 bg-white/40 dark:bg-slate-950/60 backdrop-blur-md rounded-full border border-white dark:border-slate-800 shadow-[0_0_30px_rgba(31,38,135,0.05)] dark:shadow-[0_0_40px_rgba(0,0,0,0.3)]" />
-              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 text-center text-slate-500 dark:text-cyan-400/80 font-mono text-sm">
-                [ AI Researcher ] <br /> [ Control Systems ] <br /> [ Data Science ]
+            {/* Holographic AI Terminal Background */}
+            <div className="relative w-[450px] h-[450px] flex items-center justify-center">
+              {/* Spinning Orbital Rings */}
+              <div className="absolute inset-0 rounded-full border-[3px] border-dashed border-blue-400/20 animate-[spin_20s_linear_infinite]" />
+              <div className="absolute inset-8 rounded-full border-[2px] border-dashed border-cyan-400/15 animate-[spin_15s_linear_infinite_reverse]" />
+              <div className="absolute inset-16 rounded-full border border-indigo-400/10 animate-[spin_30s_linear_infinite]" />
+              
+              {/* Central Core */}
+              <div className="relative z-10 w-64 h-64 bg-[#030712] dark:bg-[#030712] rounded-3xl border-2 border-blue-500/30 shadow-[0_0_50px_rgba(37,99,235,0.2)] dark:shadow-[0_0_80px_rgba(37,99,235,0.4)] overflow-hidden flex flex-col p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/50" />
+                  <div className="ml-auto text-[10px] font-mono text-blue-500 opacity-50 uppercase tracking-tighter">Status: Active</div>
+                </div>
+                <div className="flex-1 font-mono text-[11px] space-y-2 text-blue-400/80 overflow-hidden leading-tight">
+                  <p className="animate-pulse">_initializing system...</p>
+                  <p className="text-cyan-400">Loading Neural_Architecture</p>
+                  <p className="text-white/40">{">>"} SCANNING HARDWARE...</p>
+                  <p className="text-green-400/60">{">"} MOTOR_CONTROL: OK</p>
+                  <p className="text-green-400/60">{">"} PID_LOOP: STABLE</p>
+                  <p className="text-green-400/60">{">"} COMPUTER_VISION: READY</p>
+                  <div className="w-full h-1 bg-blue-900/50 rounded-full overflow-hidden mt-4">
+                    <motion.div 
+                      animate={{ width: ["0%", "85%", "40%", "100%"] }}
+                      transition={{ duration: 5, repeat: Infinity }}
+                      className="h-full bg-blue-500" 
+                    />
+                  </div>
+                  <p className="pt-4 text-[9px] opacity-30">HEX_DUMP 0xFF3102 - 0x00A1BC</p>
+                </div>
               </div>
+
+              {/* Float Effect for the Core */}
+              <motion.div 
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 pointer-events-none"
+              />
             </div>
           </motion.div>
-
         </motion.div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center">
-        <span className="text-xs text-muted-foreground mb-2 tracking-widest uppercase">Scroll</span>
-        <ArrowDown className="w-4 h-4 text-muted-foreground" />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span className="text-[10px] text-blue-500 font-bold tracking-[0.4em] uppercase">Initialize Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-blue-500/50 to-transparent" />
+        </motion.div>
       </div>
     </section>
   );

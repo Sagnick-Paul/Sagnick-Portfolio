@@ -28,55 +28,58 @@ export default function Research() {
   ];
 
   return (
-    <section id="research" className="py-24 bg-muted/30">
+    <section id="research" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-3 gap-12 items-center">
+        <div className="grid lg:grid-cols-3 gap-20 items-start">
 
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-1 space-y-6"
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-1 space-y-10"
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">
-              Research Interests & <br /><span className="text-accent text-opacity-90">Current Focus</span>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="h-0.5 w-12 bg-blue-600" />
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Investigation Scope</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-none">
+              Research <span className="neon-text">Focus</span>
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              My core philosophy lies in synthesizing software algorithms with physical platforms.
-              I am constantly exploring new dimensions in autonomous systems and applied AI.
+            <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed font-medium">
+              Developing a unified framework for intelligent autonomy by bridging advanced neural architectures with precision physical control.
             </p>
-            <div className="pt-4 space-y-3">
-              <h4 className="font-semibold text-foreground uppercase tracking-widest text-sm mb-4">Core Competencies</h4>
-              <p className="flex items-center gap-3 text-sm text-foreground/80 font-medium">
-                <span className="w-2 h-2 rounded-full bg-accent"></span> Artificial Intelligence
-              </p>
-              <p className="flex items-center gap-3 text-sm text-foreground/80 font-medium">
-                <span className="w-2 h-2 rounded-full bg-accent"></span> AI for Physical Systems
-              </p>
-              <p className="flex items-center gap-3 text-sm text-foreground/80 font-medium">
-                <span className="w-2 h-2 rounded-full bg-accent"></span> Autonomous Systems
-              </p>
-              <p className="flex items-center gap-3 text-sm text-foreground/80 font-medium">
-                <span className="w-2 h-2 rounded-full bg-accent"></span> Data Structures & Algorithms
-              </p>
+            <div className="pt-8 space-y-4 border-t border-blue-500/10">
+              <h4 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.3em] mb-6">Core Competencies</h4>
+              {[
+                "Artificial Intelligence",
+                "Kinematics & Control",
+                "Autonomous Navigation",
+                "Embedded Optimization"
+              ].map((comp) => (
+                <div key={comp} className="flex items-center gap-4 group">
+                  <div className="w-2 h-2 rounded-full bg-blue-500/30 group-hover:bg-blue-500 group-hover:scale-125 transition-all" />
+                  <span className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 transition-colors uppercase tracking-widest">{comp}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
 
-          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-8">
             {interests.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
-                className="bg-background border border-border/50 p-6 rounded-2xl hover:border-accent hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/5 transition-all group"
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card p-8 hover:border-blue-500/30 hover:shadow-[0_0_40px_rgba(37,99,235,0.1)] transition-all duration-500 group"
               >
-                <div className="w-12 h-12 bg-accent/10 text-accent rounded-xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mb-8 border border-blue-500/10 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all duration-500">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                <h3 className="text-xl font-black mb-4 text-slate-900 dark:text-white uppercase italic tracking-tight group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">{item.description}</p>
               </motion.div>
             ))}
           </div>

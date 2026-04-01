@@ -33,20 +33,24 @@ export default function Extras() {
   ];
 
   return (
-    <section id="extras" className="py-24 bg-muted/30">
+    <section id="extras" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 text-center lg:text-left"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-20 text-center lg:text-left"
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
-            Beyond the Classroom
+          <div className="flex items-center gap-4 mb-4 justify-center lg:justify-start">
+            <div className="h-0.5 w-12 bg-blue-600" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Extended Operations</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-none">
+            Beyond the <span className="neon-text">Classroom</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl text-lg mx-auto lg:mx-0">
-            Open source contributions and extracurricular activities.
+          <p className="text-slate-600 dark:text-slate-400 max-w-2xl text-lg font-medium mt-6 mx-auto lg:mx-0">
+            Open source contributions and high-impact extracurricular engagement.
           </p>
         </motion.div>
 
@@ -56,49 +60,54 @@ export default function Extras() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
-            className="bg-background border border-border/50 p-6 md:p-8 rounded-3xl"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="glass-card p-8 md:p-10 relative overflow-hidden group"
           >
-            <h3 className="text-xl font-semibold mb-8 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              GitHub Activity
+             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl group-hover:bg-blue-500/10 transition-all opacity-0 group-hover:opacity-100" />
+            
+            <h3 className="text-xl font-black mb-10 flex items-center gap-4 text-slate-900 dark:text-white uppercase italic tracking-widest font-mono">
+              <span className="w-3 h-3 rounded-full bg-blue-500 animate-glow-pulse" />
+              OSS_CONTRIBUTIONS
             </h3>
-            <div className="overflow-x-auto pb-4 custom-scrollbar">
-              <div className="min-w-[800px]">
+            <div className="overflow-x-auto pb-6 custom-scrollbar">
+              <div className="min-w-[800px] filter saturate-150 brightness-110">
                 {mounted ? (
                   <GitHubCalendar
                     username="Sagnick-Paul"
-                    colorScheme={theme === "dark" ? "dark" : "light"}
+                    colorScheme={theme === "dark" || theme === "system" ? "dark" : "light"}
+                    fontSize={12}
+                    blockRadius={4}
                   />
                 ) : (
-                  <div className="h-[150px] w-full animate-pulse bg-muted/50 rounded-lg"></div>
+                  <div className="h-[150px] w-full animate-pulse bg-blue-500/5 rounded-2xl border border-blue-500/10" />
                 )}
               </div>
             </div>
+            <p className="mt-6 text-[10px] font-black text-blue-500/40 uppercase tracking-[0.4em] text-right">Commit History Streamed</p>
           </motion.div>
 
           {/* Extra Activities */}
-          <div className="space-y-6">
-            <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent" />
-              Activities & Engagement
+          <div className="space-y-8">
+            <h3 className="text-xl font-black mb-6 flex items-center gap-4 text-slate-900 dark:text-white uppercase italic tracking-widest font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+              ENGAGEMENT_DATA
             </h3>
             {activities.map((activity, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex gap-6 p-6 bg-background rounded-2xl border border-border/50 hover:border-accent/50 transition-colors group"
+                className="flex gap-8 p-8 glass-card hover:border-blue-500/30 hover:shadow-[0_0_40px_rgba(37,99,235,0.1)] transition-all duration-500 group"
               >
-                <div className="w-12 h-12 bg-muted rounded-xl flex items-center justify-center shrink-0 group-hover:bg-accent/10 group-hover:text-accent transition-colors">
-                  {activity.icon}
+                <div className="w-16 h-16 bg-blue-500/10 border border-blue-500/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-blue-500/20 group-hover:text-blue-500 transition-all duration-500">
+                  <div className="text-blue-600 dark:text-blue-400">{activity.icon}</div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">{activity.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{activity.description}</p>
+                <div className="flex-1">
+                  <h4 className="text-lg font-black text-slate-900 dark:text-white mb-2 uppercase italic tracking-tight">{activity.title}</h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">{activity.description}</p>
                 </div>
               </motion.div>
             ))}

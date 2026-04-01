@@ -107,42 +107,46 @@ const TimelineItem = ({
     const scale = useTransform(progress, [startTrigger - 0.1, startTrigger], [0.9, 1]);
 
     return (
-        <div className="relative flex flex-col items-center justify-center min-w-[320px] md:min-w-[400px] px-8 md:px-12 h-[500px]">
-            {/* Timeline Node */}
+        <div className="relative flex flex-col items-center justify-center min-w-[350px] md:min-w-[450px] px-12 md:px-16 h-[600px]">
+            {/* Moving Node on the Track */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
                 <motion.div
                     style={{ scale, opacity }}
-                    className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-background bg-gradient-to-br from-blue-500 to-purple-600 shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+                    className="flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-500/30 bg-[#030712] shadow-[0_0_20px_rgba(37,99,235,0.3)] group/node"
                 >
-                    <div className="h-3 w-3 rounded-full bg-white shadow-inner animate-pulse" />
+                    <div className="h-4 w-4 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(37,99,235,1)] animate-pulse" />
+                    <div className="absolute -inset-2 border border-blue-500/10 rounded-3xl animate-[spin_10s_linear_infinite] pointer-events-none" />
                 </motion.div>
             </div>
 
             {/* Content Card */}
             <motion.div
-                style={{ opacity, scale, y: isEven ? -130 : 150 }}
-                className="w-full relative z-20"
+                style={{ opacity, scale, y: isEven ? -180 : 180 }}
+                className="w-full relative z-40"
             >
                 <div
-                    className="relative bg-background/60 border border-white/10 rounded-3xl p-5 cursor-pointer overflow-hidden group/card hover:border-accent hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-all duration-500 backdrop-blur-2xl"
+                    className="relative glass-card p-6 md:p-8 cursor-pointer overflow-hidden group/card hover:border-blue-500/50 hover:shadow-[0_0_50px_rgba(37,99,235,0.15)] transition-all duration-700"
                     onClick={() => toggleExpand(milestone.id)}
                 >
-                    {/* Hover Glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    {/* Glowing highlight corner */}
+                    <div className="absolute -top-10 -right-10 w-24 h-24 bg-blue-500/10 blur-3xl group-hover/card:bg-blue-500/20 transition-colors" />
 
-                    <div className="flex items-center gap-4 mb-3">
-                        <div className="flex items-center justify-center p-3 rounded-xl bg-accent/20 text-accent group-hover/card:bg-accent/30 transition-colors duration-300">
-                            <Icon className="w-5 h-5" />
+                    <div className="flex items-start gap-5 mb-5">
+                        <div className="flex items-center justify-center p-4 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/20 group-hover/card:bg-blue-500/20 group-hover/card:scale-110 transition-all duration-500">
+                            <Icon className="w-6 h-6" />
                         </div>
-                        <div>
-                            <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black bg-accent/20 tracking-widest text-accent mb-1 uppercase italic">
-                                {milestone.year}
-                            </span>
-                            <h3 className="text-base md:text-lg font-bold tracking-tight leading-tight">{milestone.title}</h3>
+                        <div className="flex-1">
+                            <div className="flex items-center justify-between mb-1">
+                                <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em] font-mono italic">
+                                    {milestone.year}
+                                </span>
+                                <div className="text-[8px] font-bold text-blue-500/30 font-mono tracking-tighter">ID: 00{milestone.id}</div>
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">{milestone.title}</h3>
                         </div>
                     </div>
 
-                    <p className="text-muted-foreground text-xs md:text-sm leading-relaxed mb-4 line-clamp-2 md:line-clamp-3 group-hover/card:line-clamp-none transition-all duration-300">
+                    <p className="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed mb-6">
                         {milestone.shortDesc}
                     </p>
 
@@ -152,32 +156,32 @@ const TimelineItem = ({
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.4, ease: "circOut" }}
+                                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                                 className="overflow-hidden"
                             >
-                                <ul className="space-y-3 mt-4 pt-4 border-t border-white/10">
+                                <div className="space-y-4 mt-6 pt-6 border-t border-blue-500/10">
                                     {milestone.longDesc.map((desc, i) => (
-                                        <motion.li
+                                        <motion.div
                                             key={i}
                                             initial={{ opacity: 0, x: -10 }}
                                             animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: i * 0.08 }}
-                                            className="text-xs text-muted-foreground/90 flex gap-3 items-start"
+                                            transition={{ delay: i * 0.1 }}
+                                            className="text-xs text-slate-500 dark:text-slate-400 flex gap-4 items-start font-medium"
                                         >
-                                            <span className="text-accent mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
-                                            <span>{desc}</span>
-                                        </motion.li>
+                                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-500/50 shadow-[0_0_8px_rgba(37,99,235,0.5)] shrink-0" />
+                                            <span className="leading-relaxed">{desc}</span>
+                                        </motion.div>
                                     ))}
-                                </ul>
+                                </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
 
-                    <div className="flex items-center gap-2 mt-4 text-[10px] font-black text-accent uppercase tracking-widest group-hover:gap-3 transition-all">
+                    <div className="flex items-center gap-3 mt-6 text-[10px] font-black text-blue-600 dark:text-blue-500 uppercase tracking-[0.2em] group-hover/card:translate-x-2 transition-transform">
                         {isExpanded ? (
-                            <>Collapse <ChevronUp className="w-3.5 h-3.5" /></>
+                            <>Close Logic <ChevronUp className="w-4 h-4" /></>
                         ) : (
-                            <>Details <ChevronDown className="w-3.5 h-3.5" /></>
+                            <>Initialize Detail <ChevronDown className="w-4 h-4" /></>
                         )}
                     </div>
                 </div>
@@ -239,66 +243,73 @@ export default function Journey() {
     }
 
     return (
-        <section ref={sectionRef} id="journey" className="relative h-[800vh] bg-background">
-            <div className="sticky top-0 h-screen flex flex-col overflow-hidden bg-background">
-                {/* Immersive Background */}
-                <div className="absolute inset-0 pointer-events-none -z-10 bg-background">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]" />
-                    <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:80px_80px]" />
-                </div>
+    <section ref={sectionRef} id="journey" className="relative h-[800vh] bg-background">
+      <div className="sticky top-0 h-screen flex flex-col overflow-hidden bg-background">
+        {/* Immersive Background Grid/Glow */}
+        <div className="absolute inset-0 pointer-events-none -z-10 bg-background">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(0,124,240,0.15),transparent_50%)]" />
+          <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:100px_100px]" />
+        </div>
 
-                {/* Sticky Top Header */}
-                <div className="absolute top-0 left-0 w-full z-30 pt-20 md:pt-24 text-center pointer-events-none">
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="flex flex-col items-center gap-3"
-                    >
-                        <h2 className="text-5xl md:text-7xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground via-foreground/100 to-foreground/50 leading-none select-none">
-                            JOURNEY
-                        </h2>
-                        <div className="flex items-center gap-5 text-muted-foreground/60 mt-4 px-6 py-2 bg-background/50 backdrop-blur-sm rounded-full border border-white/5">
-                            <div className="h-px w-6 md:w-10 bg-accent/40" />
-                            <p className="text-[10px] md:text-xs font-black tracking-[0.4em] uppercase italic">
-                                Navigate the Timeline
-                            </p>
-                            <div className="h-px w-6 md:w-10 bg-accent/40" />
-                        </div>
-                    </motion.div>
-                </div>
-
-                {/* Main Timeline Layer - Shifted down for header clearance */}
-                <div className="flex-1 flex items-center justify-start relative w-full h-full z-10 px-[15vw] translate-y-[8vh]">
-                    <motion.div
-                        style={{ x }}
-                        className="flex flex-row items-center w-max relative h-full py-16"
-                    >
-                        {/* Horizontal Track - Full breadth */}
-                        <div className="absolute left-0 right-0 h-1 bg-white/5 top-1/2 -translate-y-1/2 rounded-full mx-[-200vw]" />
-
-                        {/* Animated Progress Track */}
-                        <motion.div
-                            className="absolute left-0 h-1 bg-gradient-to-r from-blue-500 via-purple-600 to-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)] top-1/2 -translate-y-1/2 rounded-full origin-left z-20"
-                            style={{ scaleX, width: "100%" }}
-                        />
-
-                        <div className="flex items-center gap-0">
-                            {milestones.map((milestone, index) => (
-                                <TimelineItem
-                                    key={milestone.id}
-                                    milestone={milestone}
-                                    index={index}
-                                    progress={scrollYProgress}
-                                    expandedId={expandedId}
-                                    toggleExpand={toggleExpand}
-                                />
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
+        {/* Sticky UI Header */}
+        <div className="absolute top-0 left-0 w-full z-20 pt-24 px-8 flex justify-between items-end pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-2 relative z-10"
+          >
+            <h2 className="text-6xl md:text-8xl font-black tracking-tighter text-slate-200/10 dark:text-white/5 uppercase leading-none select-none absolute -top-10 -left-4 -z-10">
+              Timeline
+            </h2>
+            <div className="flex items-center gap-4">
+              <div className="h-0.5 w-12 bg-blue-600" />
+              <p className="text-[10px] md:text-sm font-black tracking-[0.5em] uppercase text-blue-600 dark:text-blue-500 italic">
+                The Narrative of Progress
+              </p>
             </div>
-        </section>
+          </motion.div>
+          <div className="hidden md:flex flex-col items-end gap-2 text-right">
+            <span className="text-[10px] font-mono text-blue-500/50 uppercase tracking-widest whitespace-nowrap">Scroll to Navigate</span>
+            <div className="w-32 h-1 bg-white/5 rounded-full overflow-hidden">
+                <motion.div 
+                    className="h-full bg-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.5)]" 
+                    style={{ width: `${(expandedId ? (expandedId / milestones.length) * 100 : 0)}%` }}
+                />
+            </div>
+          </div>
+        </div>
+
+        {/* Timeline Visualization */}
+        <div className="flex-1 flex items-center justify-start relative w-full h-full z-10 px-[15vw] translate-y-[5vh]">
+          <motion.div
+            style={{ x }}
+            className="flex flex-row items-center w-max relative h-full py-16"
+          >
+            {/* Background Track line */}
+            <div className="absolute left-0 right-0 h-[2px] bg-blue-500/5 top-1/2 -translate-y-1/2 rounded-full mx-[-200vw]" />
+
+            {/* Glowing Active Track */}
+            <motion.div
+              className="absolute left-0 h-[2px] bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-600 shadow-[0_0_20px_rgba(37,99,235,0.8)] top-1/2 -translate-y-1/2 rounded-full origin-left z-0"
+              style={{ scaleX, width: "100%" }}
+            />
+
+            <div className="flex items-center gap-0">
+              {milestones.map((milestone, index) => (
+                <TimelineItem
+                  key={milestone.id}
+                  milestone={milestone}
+                  index={index}
+                  progress={scrollYProgress}
+                  expandedId={expandedId}
+                  toggleExpand={toggleExpand}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
     );
 }

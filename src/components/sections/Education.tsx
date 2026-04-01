@@ -56,53 +56,57 @@ export default function Education() {
     },
   ];
 
-  return (
-    <section id="education" className="py-24 bg-background">
+  return (    <section id="education" className="py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
-            Education & Certifications
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-slate-900 dark:text-white">
+            Educational <span className="neon-text">Vector</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl text-lg">
-            My academic background and continuous learning journey.
+          <p className="text-slate-600 dark:text-slate-400 max-w-2xl text-lg font-medium">
+            Academic milestones and specialized certifications in intelligent systems.
           </p>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-600 to-transparent rounded-full mt-4" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-16">
           {/* Education Column */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold flex items-center gap-2 mb-6">
-              <GraduationCap className="h-6 w-6 text-accent" />
-              Academic Background
+          <div className="space-y-10">
+            <h3 className="text-xl font-bold uppercase tracking-[0.3em] flex items-center gap-3 text-blue-600 dark:text-blue-400">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
+                <GraduationCap className="h-5 w-5" />
+              </div>
+              Academics
             </h3>
             
-            <div className="space-y-6 flex flex-col h-full border-l-2 border-muted pl-6 ml-3">
+            <div className="space-y-12 relative pl-16 before:absolute before:left-[23px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gradient-to-b before:from-blue-600 before:via-blue-400 before:to-transparent dark:before:from-blue-500 dark:before:via-blue-500/50 dark:before:to-transparent">
               {education.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="relative group"
                 >
-                  <div className="absolute w-3 h-3 bg-accent rounded-full -left-[31px] top-1.5" />
-                  <div className="bg-background border border-border/50 p-6 rounded-2xl hover:border-accent/50 transition-colors">
-                    <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-xl font-semibold text-foreground">{item.institution}</h4>
-                      <span className="text-sm text-accent bg-accent/10 px-3 py-1 rounded-full whitespace-nowrap">
+                  <div className="absolute w-4 h-4 bg-blue-600 dark:bg-blue-500 rounded-full left-[-48px] top-3 shadow-[0_0_15px_rgba(37,99,235,0.6)] group-hover:scale-125 transition-transform z-10" />
+                  <div className="glass-card p-8 group-hover:border-blue-500/30 transition-all duration-500 relative z-0">
+                    <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6">
+                      <h4 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {item.institution}
+                      </h4>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-500/10 px-4 py-2 rounded-lg border border-blue-500/20 shadow-sm">
                         {item.period}
                       </span>
                     </div>
-                    <p className="text-foreground font-medium mb-1">{item.degree}</p>
-                    <p className="text-sm font-semibold text-muted-foreground mb-3">{item.details}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                    <p className="text-lg font-bold text-slate-800 dark:text-slate-200 mb-2">{item.degree}</p>
+                    <p className="text-sm font-mono text-blue-600 dark:text-blue-400 mb-4">{item.details}</p>
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">{item.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -110,13 +114,15 @@ export default function Education() {
           </div>
 
           {/* Certifications Column */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold flex items-center gap-2 mb-6">
-              <Award className="h-6 w-6 text-accent" />
-              Professional Certifications
+          <div className="space-y-10">
+            <h3 className="text-xl font-bold uppercase tracking-[0.3em] flex items-center gap-3 text-blue-600 dark:text-blue-400">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
+                <Award className="h-5 w-5" />
+              </div>
+              Certifications
             </h3>
             
-            <div className="grid gap-4">
+            <div className="grid gap-6">
               {certifications.map((cert, index) => (
                 <CertificationItem 
                   key={index} 
@@ -130,68 +136,59 @@ export default function Education() {
         </div>
       </div>
 
-      {/* Certificate Modal */}
+      {/* Modal remains same but with updated glass-card styles */}
       <AnimatePresence>
         {selectedCert && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-[#030712]/90 backdrop-blur-md"
           >
-            {/* Modal Content */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ scale: 0.9, opacity: 0, y: 30 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-5xl h-[80vh] bg-card border border-border rounded-3xl shadow-2xl overflow-hidden flex flex-col"
+              exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              className="relative w-full max-w-5xl h-[85vh] bg-[#030712] border border-blue-500/20 rounded-[32px] shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col"
             >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between p-4 md:p-6 border-b border-border bg-card/50">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-accent/10 rounded-lg">
-                    <Award className="h-5 w-5 text-accent" />
+              <div className="flex items-center justify-between p-6 border-b border-blue-500/10 bg-blue-500/5">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                    <Award className="h-6 w-6 text-blue-500" />
                   </div>
-                  <h3 className="text-lg md:text-xl font-bold text-foreground line-clamp-1">
+                  <h3 className="text-xl font-bold text-white line-clamp-1 italic tracking-tight">
                     {selectedCert.name}
                   </h3>
                 </div>
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="p-2 hover:bg-muted rounded-full transition-colors"
+                  className="p-3 hover:bg-white/10 rounded-2xl transition-all active:scale-90"
                 >
-                  <X className="h-6 w-6 text-muted-foreground" />
+                  <X className="h-6 w-6 text-white" />
                 </button>
               </div>
 
-              {/* Modal Content - PDF Viewer */}
-              <div className="flex-1 bg-muted/30 relative">
+              <div className="flex-1 bg-black relative">
                 <iframe
                   src={selectedCert.url}
                   className="w-full h-full border-none"
                   title={selectedCert.name}
                 />
                 
-                {/* Fallback link */}
-                <div className="absolute inset-x-0 bottom-8 flex justify-center pointer-events-none">
+                <div className="absolute inset-x-0 bottom-10 flex justify-center pointer-events-none">
                   <a 
                     href={selectedCert.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="pointer-events-auto bg-accent text-accent-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 hover:scale-105 transition-transform"
+                    className="pointer-events-auto bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-xl font-bold text-sm tracking-widest uppercase shadow-[0_0_30px_rgba(37,99,235,0.4)] hover:scale-105 transition-all flex items-center gap-3"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    Open in New Tab
+                    Expand View
                   </a>
                 </div>
               </div>
             </motion.div>
-
-            {/* Backdrop close area */}
-            <div 
-              className="absolute inset-0 -z-10" 
-              onClick={() => setSelectedCert(null)} 
-            />
+            <div className="absolute inset-0 -z-10" onClick={() => setSelectedCert(null)} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -205,43 +202,43 @@ function CertificationItem({ cert, index, onSelect }: { cert: any, index: number
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => cert.url && onSelect({ name: cert.name, url: cert.url })}
-      className={`group relative flex flex-col bg-background border border-border/50 rounded-2xl transition-all duration-500 ease-in-out ${
-        cert.url ? 'cursor-pointer hover:border-accent/50' : ''
-      } ${isHovered && cert.url ? 'shadow-[0_0_30px_-5px_hsl(var(--accent)/0.15)] bg-accent/[0.02]' : ''}`}
+      className={`group relative flex flex-col glass-card border-blue-500/10 transition-all duration-500 overflow-hidden ${
+        cert.url ? 'cursor-pointer' : ''
+      } ${isHovered && cert.url ? 'border-blue-500/40 shadow-[0_0_40px_rgba(37,99,235,0.1)] -translate-y-1' : ''}`}
     >
-      <div className="p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-        <div className="flex items-start gap-4">
-          <div className={`p-2 bg-background rounded-lg border border-border transition-colors shrink-0 ${
-            isHovered && cert.url ? 'bg-accent/10 border-accent/20' : ''
+      <div className="p-6 flex flex-col sm:flex-row justify-between sm:items-center gap-6">
+        <div className="flex items-start gap-5">
+          <div className={`p-4 rounded-xl border border-blue-500/10 bg-blue-500/5 transition-all duration-500 ${
+            isHovered && cert.url ? 'bg-blue-500/20 border-blue-500/40 scale-110 rotate-3' : ''
           }`}>
-            <BookOpen className={`h-5 w-5 transition-colors ${
-              isHovered && cert.url ? 'text-accent' : 'text-muted-foreground'
+            <BookOpen className={`h-6 w-6 transition-colors ${
+              isHovered && cert.url ? 'text-blue-400' : 'text-slate-400'
             }`} />
           </div>
           <div>
-            <h4 className="font-medium text-foreground mb-1 leading-tight">{cert.name}</h4>
-            <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+            <h4 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight mb-1">{cert.name}</h4>
+            <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{cert.issuer}</p>
           </div>
         </div>
         
-        <div className="flex items-center gap-3 self-start sm:self-auto shrink-0">
-          <span className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded-md font-bold ${
+        <div className="flex items-center gap-4 self-end sm:self-auto">
+          <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-lg border-2 ${
             cert.status === 'Completed' 
-              ? 'bg-green-500/10 text-green-500 border border-green-500/20' 
-              : 'bg-blue-500/10 text-blue-500 border border-blue-500/20'
+              ? 'border-green-500/20 text-green-600 dark:text-green-400 bg-green-500/5' 
+              : 'border-blue-500/20 text-blue-600 dark:text-blue-400 bg-blue-500/5'
           }`}>
             {cert.status}
           </span>
           {cert.url && (
-            <div className="sm:hidden text-accent/50">
-              <ExternalLink className="h-3 w-3" />
+            <div className="hidden sm:block opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0">
+              <Eye className="h-5 w-5 text-blue-500" />
             </div>
           )}
         </div>
@@ -250,30 +247,14 @@ function CertificationItem({ cert, index, onSelect }: { cert: any, index: number
       <AnimatePresence>
         {isHovered && cert.url && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="px-5 pb-5 pt-0">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                className="flex items-center gap-2 text-accent font-semibold text-sm group/btn"
-              >
-                <div className="flex-1 h-[1px] bg-border transition-colors group-hover/btn:bg-accent/20" />
-                <span className="flex items-center gap-1.5 py-2 px-4 rounded-full bg-accent/5 hover:bg-accent/10 transition-all border border-accent/10 hover:border-accent/20 hover:scale-105 active:scale-95">
-                  <Eye className="h-4 w-4" />
-                  View Certificate
-                </span>
-                <div className="flex-1 h-[1px] bg-border transition-colors group-hover/btn:bg-accent/20" />
-              </motion.div>
-            </div>
-          </motion.div>
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            exit={{ width: 0 }}
+            className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400"
+          />
         )}
       </AnimatePresence>
     </motion.div>
   );
 }
+
