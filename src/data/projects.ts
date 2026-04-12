@@ -60,6 +60,40 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "traffiq-2025-self-driving",
+    title: "Behavioral Cloning Self-Driving System",
+    description: "End-to-end AI system for autonomous vehicle navigation using Behavioral Cloning (Dave-2) and YOLOv8 for real-time obstacle detection on Raspberry Pi.",
+    techStack: ["PyTorch", "ONNX", "YOLOv8", "CARLA", "Raspberry Pi", "Computer Vision"],
+    images: ["/projects/traffiq-1.jpg"],
+    problem: "Navigating a complex physical arena autonomously requires high-frequency processing of visual data and reliable inference on constrained edge hardware like the Raspberry Pi 4B.",
+    approach: "Combined Behavioral Cloning for lane following with a YOLO-based safety layer. Trained the CNN on Udacity simulation data and fine-tuned it on photorealistic CARLA environments to bridge the sim-to-real gap.",
+    architecture: "Dual-model architecture: NVIDIA Dave-2 (CNN) for continuous steering prediction and YOLOv8n for parallel obstacle detection. Exported to ONNX for 20+ FPS inference on 8GB Raspberry Pi 4B.",
+    challenges: [
+      "Optimizing model latency to maintain a high control frequency on ARM-based hardware.",
+      "Bridging the sim-to-real gap using domain adaptation via photorealistic CARLA data.",
+      "Developing a fail-safe override mechanism for real-time obstacle avoidance."
+    ],
+    results: [
+      "Achieved stable autonomous navigation with a validation MSE of 0.0809.",
+      "Successfully integrated a real-time YOLOv8 safety layer with 300ms latency on CPU.",
+      "Full compliance with TRAFFIQ competition rules and local execution requirements."
+    ],
+    links: {
+      github: "https://github.com/Sagnick-Paul",
+    },
+    featured: true,
+    documents: [
+      {
+        title: "Problem Statement",
+        url: "/traffiq-ps.pdf"
+      },
+      {
+        title: "Project Report",
+        url: "/traffiq-report.pdf"
+      }
+    ],
+  },
+  {
     id: "self-balancing-robot",
     title: "Self Balancing Robot",
     description: "Designed a two-wheel self-balancing robot utilizing MPU6050 IMU sensors and implemented PID-based real-time stabilization using embedded control systems.",
