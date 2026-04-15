@@ -13,11 +13,16 @@ const MotorParallaxSection = dynamic(() => import("@/components/sections/MotorPa
   ssr: false,
 });
 
+const AIParallaxSection = dynamic(() => import("@/components/sections/AIParallaxSection"), {
+  ssr: false,
+});
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
       <MotorParallaxSection />
+      <AIParallaxSection />
       <About />
       <Education />
       <Journey />
