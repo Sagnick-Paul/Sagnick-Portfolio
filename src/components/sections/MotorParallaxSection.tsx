@@ -22,7 +22,7 @@ export default function MotorParallaxSection() {
       className="relative w-full flex flex-col items-center justify-center overflow-hidden py-32 lg:py-48"
     >
       {/* Background Orbital Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[150px] -z-10 pointer-events-none animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[150px] -z-10 pointer-events-none animate-pulse" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[45%_55%] gap-16 lg:gap-24 items-center h-full relative z-10">
 

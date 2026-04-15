@@ -269,12 +269,8 @@ export default function Journey() {
     };
 
     return (
-        <section ref={sectionRef} id="journey" className="relative py-32 bg-background">
-            {/* Background Glow */}
-            <div className="absolute inset-0 pointer-events-none -z-10">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,124,240,0.08),transparent_70%)]" />
-                <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:100px_100px]" />
-            </div>
+        <section ref={sectionRef} id="journey" className="relative py-32 bg-background dark:bg-black z-10">
+            {/* Background Glow removed to keep it 'just black' */}
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
