@@ -49,7 +49,7 @@ export default function Hero() {
   const roles = ["AI Researcher", "Control Systems", "Data Science"];
 
   return (
-    <section ref={ref} className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
+    <section ref={ref} className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden backdrop-blur-[6px] dark:backdrop-blur-[10px] transition-all duration-1000">
       <GridBackground />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
@@ -63,7 +63,7 @@ export default function Hero() {
             y: shouldReduceMotion ? 0 : translateY,
             transformStyle: "preserve-3d",
           }}
-          className="flex flex-col lg:flex-row items-center justify-between gap-12 glass-card p-8 md:p-16 relative overflow-hidden group/card transition-all duration-700"
+          className="flex flex-col lg:flex-row items-center justify-between gap-12 glass-card p-8 md:p-16 relative overflow-hidden group/card transition-all duration-700 border-white/20 dark:border-blue-500/20 shadow-2xl"
         >
           {/* Subtle Internal Glow */}
           <div className="absolute -inset-[100%] bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-500/5 group-hover/card:animate-pulse -z-10" />

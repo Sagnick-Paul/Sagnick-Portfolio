@@ -269,7 +269,7 @@ export default function Journey() {
     };
 
     return (
-        <section ref={sectionRef} id="journey" className="relative py-32 bg-background dark:bg-black z-10">
+        <section ref={sectionRef} id="journey" className="relative py-32 bg-transparent z-10">
             {/* Background Glow removed to keep it 'just black' */}
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
+    <section id="about" className="py-32 relative overflow-hidden backdrop-blur-[6px] dark:backdrop-blur-[10px] transition-all duration-1000">
       {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px]" />
@@ -17,7 +17,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="glass-card p-8 md:p-16 relative overflow-hidden"
+          className="glass-card p-8 md:p-16 relative overflow-hidden border-white/20 dark:border-blue-500/20 shadow-2xl"
         >
           {/* Header with neon underline */}
           <div className="relative mb-12 inline-block">
