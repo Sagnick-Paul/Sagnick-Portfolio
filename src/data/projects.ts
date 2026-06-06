@@ -79,7 +79,7 @@ export const projects: Project[] = [
       "Full compliance with TRAFFIQ competition rules and local execution requirements."
     ],
     links: {
-      github: "https://github.com/Sagnick-Paul",
+      github: "https://github.com/Sagnick-Paul/TraffIQ-Self-Driving-Car",
     },
     featured: true,
     documents: [
