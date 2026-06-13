@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   techStack: string[];
   images: string[];
+  imageFolder?: string;
   problem: string;
   approach: string;
   architecture: string;
@@ -30,6 +31,7 @@ export const projects: Project[] = [
       "/projects/mri-1.jpg",
       "/projects/mri-2.jpg"
     ],
+    imageFolder: "Brain tumour segmentation",
     problem: "Accurate segmentation of brain tumors in MRI scans is crucial for clinical diagnosis and treatment planning. Manual segmentation is time-consuming and prone to human error, highlighting the need for automated and reliable AI assist tools.",
     approach: "Developed an end-to-end pipeline starting with skull stripping and contrast enhancement, followed by data augmentation. A deep Convolutional Neural Network (U-Net architecture) was trained to predict pixel-wise tumor masks.",
     architecture: "The system relies on a U-Net based encoder-decoder architecture with skip connections. The model was trained using a custom Dice Loss function to handle class imbalance, and the frontend is served using a Streamlit Python web app.",

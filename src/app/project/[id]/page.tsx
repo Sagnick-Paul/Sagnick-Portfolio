@@ -3,8 +3,44 @@ import { notFound } from "next/navigation";
 import { CheckCircle2, Layout, Database, Server, Cpu, TriangleAlert } from "lucide-react";
 import { Metadata } from "next";
 import ProjectHero from "./ProjectHero";
-
 import ProjectDocumentation from "./ProjectDocumentation";
+import ProjectGallery from "./ProjectGallery";
+import fs from "fs";
+import path from "path";
+
+// Helper function to dynamically read images from public folders with fallbacks
+function getProjectImages(project: any): string[] {
+  const foldersToTry = [];
+  if (project.imageFolder) {
+    foldersToTry.push(project.imageFolder);
+  }
+  // Try ID and Title
+  foldersToTry.push(project.id);
+  foldersToTry.push(project.title);
+
+  const imageExtensions = [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"];
+
+  for (const folder of foldersToTry) {
+    if (!folder) continue;
+    const dirPath = path.join(process.cwd(), "public", folder);
+    if (fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory()) {
+      try {
+        const files = fs.readdirSync(dirPath);
+        const images = files
+          .filter((file) => imageExtensions.includes(path.extname(file).toLowerCase()))
+          .map((file) => `/${folder}/${file}`);
+        if (images.length > 0) {
+          return images;
+        }
+      } catch (e) {
+        console.error(`Error reading directory public/${folder}:`, e);
+      }
+    }
+  }
+
+  // Fallback to static list in project.images if we found nothing in folders
+  return project.images || [];
+}
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -27,6 +63,8 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
   if (!project) {
     notFound();
   }
+
+  const projectImages = getProjectImages(project);
 
   return (
     <article className="min-h-screen bg-background pb-24 text-foreground selection:bg-accent/30 tracking-tight">
@@ -108,22 +146,8 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
           )}
 
           {/* Screenshots Section */}
-          {project.images && project.images.length > 0 && (
-            <section>
-              <h2 className="text-2xl font-bold mb-8 items-center gap-3 hidden">
-                Screenshots
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-6">
-                {project.images.map((img, index) => (
-                  <div key={index} className="rounded-2xl overflow-hidden border border-border/50 bg-secondary/30 aspect-video relative group">
-                    {/* Placeholder for actual image */}
-                    <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-mono text-sm">
-                      {img} (Placeholder)
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+          {projectImages.length > 0 && (
+            <ProjectGallery images={projectImages} projectTitle={project.title} />
           )}
 
         </div>
