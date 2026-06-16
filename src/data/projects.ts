@@ -28,8 +28,11 @@ export const projects: Project[] = [
     description: "CNN-based medical image segmentation with preprocessing, augmentation, and model evaluation using Dice coefficient. Deployed via Streamlit.",
     techStack: ["Deep Learning", "CNN", "Streamlit", "Medical AI", "PyTorch", "OpenCV"],
     images: [
-      "/projects/mri-1.jpg",
-      "/projects/mri-2.jpg"
+      "/Brain tumour segmentation/download.png",
+      "/Brain tumour segmentation/my_plot1.png",
+      "/Brain tumour segmentation/my_plot1 (1).png",
+      "/Brain tumour segmentation/my_plot3.png",
+      "/Brain tumour segmentation/my_plot4.png"
     ],
     imageFolder: "Brain tumour segmentation",
     problem: "Accurate segmentation of brain tumors in MRI scans is crucial for clinical diagnosis and treatment planning. Manual segmentation is time-consuming and prone to human error, highlighting the need for automated and reliable AI assist tools.",
