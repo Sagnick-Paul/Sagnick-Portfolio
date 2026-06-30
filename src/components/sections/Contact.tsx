@@ -27,7 +27,7 @@ export default function Contact() {
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono">Channel Open</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white uppercase italic leading-none mb-8">
-              Establish <span className="neon-text">Liaison</span>
+              <span className="neon-text">Contact</span>
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-lg mb-12 max-w-md font-medium leading-relaxed">
               Initiate communication for research collaborations, engineering opportunities, or technical inquiries.
@@ -35,7 +35,7 @@ export default function Contact() {
             
             <div className="space-y-6">
               {[
-                { icon: Mail, label: "Neural Mail", value: "sp.professional2005@gmail.com", href: "mailto:sp.professional2005@gmail.com" },
+                { icon: Mail, label: "Email", value: "sp.professional2005@gmail.com", href: "mailto:sp.professional2005@gmail.com" },
                 { icon: Phone, label: "Direct Line", value: "+91 9123835498", href: "tel:+919123835498" },
                 { icon: MapPin, label: "Nodes", value: "Kolkata, India", href: null },
               ].map((item, i) => (
@@ -68,7 +68,7 @@ export default function Contact() {
           >
             {/* Terminal Header */}
             <div className="flex items-center justify-between mb-10 pb-6 border-b border-blue-500/10">
-              <h3 className="text-xl font-black uppercase tracking-[0.2em] italic text-slate-900 dark:text-white">Secure Terminal</h3>
+              <h3 className="text-xl font-black uppercase tracking-[0.2em] italic text-slate-900 dark:text-white">Send a Message</h3>
               <div className="flex gap-2">
                 <div className="w-2 h-2 rounded-full bg-red-500/50" />
                 <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
@@ -79,7 +79,7 @@ export default function Contact() {
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Origin_Name</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Name</label>
                   <input 
                     type="text" 
                     placeholder="IDENTIFY YOURSELF"
@@ -87,7 +87,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Return_Channel</label>
+                  <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Email</label>
                   <input 
                     type="email" 
                     placeholder="EMAIL_ADDRESS"
@@ -96,7 +96,7 @@ export default function Contact() {
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Transmission_Payload</label>
+                <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Message</label>
                 <textarea 
                   rows={4}
                   placeholder="INPUT_MESSAGE_DATA..."
@@ -105,7 +105,7 @@ export default function Contact() {
               </div>
               <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black tracking-[0.3em] uppercase text-xs py-5 rounded-xl shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:scale-[1.02] active:scale-95 transition-all group overflow-hidden relative">
                 <span className="relative z-10 flex items-center justify-center gap-3">
-                  Transmit Data <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  Send <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </button>

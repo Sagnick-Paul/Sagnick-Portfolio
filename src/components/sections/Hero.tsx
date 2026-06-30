@@ -109,20 +109,20 @@ export default function Hero() {
               className="flex flex-wrap gap-6"
             >
               <Link
-                href="#projects"
+                href="/Sagnick_CV.pdf"
+                target="_blank"
                 className="relative inline-flex items-center justify-center px-10 py-4 rounded-xl bg-blue-600 text-white font-bold tracking-widest text-sm uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] overflow-hidden group/btn"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  View Systems <ArrowDown className="w-4 h-4 transition-transform group-hover/btn:translate-y-1" />
+                  <Download className="w-4 h-4" /> Download Resume
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
               </Link>
               <Link
-                href="/Sagnick_CV.pdf"
-                target="_blank"
-                className="inline-flex items-center justify-center px-10 py-4 rounded-xl border-2 border-blue-500/30 dark:border-blue-400/20 bg-transparent text-slate-700 dark:text-slate-300 font-bold tracking-widest text-sm uppercase transition-all duration-300 hover:bg-blue-500/5 hover:border-blue-500/50 gap-2"
+                href="#projects"
+                className="inline-flex items-center justify-center px-10 py-4 rounded-xl border-2 border-blue-500/30 dark:border-blue-400/20 bg-transparent text-slate-700 dark:text-slate-300 font-bold tracking-widest text-sm uppercase transition-all duration-300 hover:bg-blue-500/5 hover:border-blue-500/50 gap-2 group/btn"
               >
-                <Download className="w-4 h-4" /> Download Resume
+                View Projects <ArrowDown className="w-4 h-4 transition-transform group-hover/btn:translate-y-1" />
               </Link>
             </motion.div>
 

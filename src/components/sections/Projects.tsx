@@ -119,7 +119,7 @@ export default function Projects() {
                     }}
                     className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-500 transition-colors opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500"
                   >
-                    <Eye className="w-4 h-4" /> Quick Scan
+                    <Eye className="w-4 h-4" /> Preview
                   </button>
                 </div>
               </div>
@@ -135,7 +135,7 @@ export default function Projects() {
           className="mt-20 text-center z-10 relative"
         >
           <Link href="/projects" className="inline-flex items-center gap-4 px-10 py-4 rounded-xl bg-blue-600 text-white font-black tracking-[0.2em] text-xs uppercase hover:bg-blue-500 hover:scale-105 transition-all shadow-[0_0_30px_rgba(37,99,235,0.4)] group">
-            Access Full Archive
+            View All Projects
             <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
           </Link>
         </motion.div>

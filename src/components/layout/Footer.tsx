@@ -47,9 +47,6 @@ export default function Footer() {
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Sagnick Paul. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground mt-4 md:mt-0">
-            Built with Next.js and Tailwind CSS
-          </p>
         </div>
       </div>
     </footer>

@@ -8,7 +8,6 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Research from "@/components/sections/Research";
 import Contact from "@/components/sections/Contact";
-import Extras from "@/components/sections/Extras";
 
 const MotorParallaxSection = dynamic(() => import("@/components/sections/MotorParallaxSection"), {
   ssr: false,
@@ -32,7 +31,6 @@ export default function Home() {
         <Projects />
         <Skills />
         <Research />
-        <Extras />
         <Contact />
       </div>
     </div>

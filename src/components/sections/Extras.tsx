@@ -2,9 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { GitHubCalendar } from "react-github-calendar";
+import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 import { Activity, Trophy, Code2 } from "lucide-react";
+
+const GitHubCalendar = dynamic(
+  () => import("react-github-calendar").then((mod) => mod.GitHubCalendar),
+  { ssr: false }
+);
 
 export default function Extras() {
   const { theme } = useTheme();

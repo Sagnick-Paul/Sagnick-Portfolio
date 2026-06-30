@@ -246,7 +246,7 @@ function MilestoneContent({
                 {isExpanded ? (
                     <>Close Logic <ChevronUp className="w-4 h-4" /></>
                 ) : (
-                    <>Initialize Detail <ChevronDown className="w-4 h-4" /></>
+                    <>View Details <ChevronDown className="w-4 h-4" /></>
                 )}
             </div>
         </div>
