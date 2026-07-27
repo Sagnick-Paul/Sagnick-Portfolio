@@ -28,7 +28,8 @@ export default function Education() {
     {
       name: "Generative AI, Machine Learning & Intelligent Automation",
       issuer: "IIT Delhi",
-      status: "Ongoing",
+      status: "Completed",
+      url: "/IITD AIML certificate.pdf",
     },
     {
       name: "Professional Certificate Course in Data Science",

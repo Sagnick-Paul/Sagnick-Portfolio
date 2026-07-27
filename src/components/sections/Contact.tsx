@@ -1,10 +1,44 @@
 "use client";
 
+import { useState } from "react";
+
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 export default function Contact() {
+  const [status, setStatus] = useState("idle"); // idle, sending, sent, error
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement)?.value,
+      email: (form.elements.namedItem("email") as HTMLInputElement)?.value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value,
+    };
+    try {
+const formspreeId = "xrewarvj"; // Formspree form ID
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
       {/* Background Cyber-lines */}
@@ -76,12 +110,13 @@ export default function Contact() {
               </div>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Name</label>
                   <input 
                     type="text" 
+                    name="name"
                     placeholder="IDENTIFY YOURSELF"
                     className="w-full bg-blue-500/5 border border-blue-500/10 rounded-xl px-6 py-4 text-sm font-bold text-slate-900 dark:text-white placeholder:text-slate-400/30 focus:outline-none focus:border-blue-500/50 focus:bg-blue-500/10 transition-all"
                   />
@@ -90,6 +125,7 @@ export default function Contact() {
                   <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Email</label>
                   <input 
                     type="email" 
+                    name="email"
                     placeholder="EMAIL_ADDRESS"
                     className="w-full bg-blue-500/5 border border-blue-500/10 rounded-xl px-6 py-4 text-sm font-bold text-slate-900 dark:text-white placeholder:text-slate-400/30 focus:outline-none focus:border-blue-500/50 focus:bg-blue-500/10 transition-all"
                   />
@@ -98,14 +134,19 @@ export default function Contact() {
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-blue-500/60 ml-2">Message</label>
                 <textarea 
+                  name="message"
                   rows={4}
                   placeholder="INPUT_MESSAGE_DATA..."
                   className="w-full bg-blue-500/5 border border-blue-500/10 rounded-xl px-6 py-4 text-sm font-bold text-slate-900 dark:text-white placeholder:text-slate-400/30 focus:outline-none focus:border-blue-500/50 focus:bg-blue-500/10 transition-all resize-none"
                 />
               </div>
-              <button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black tracking-[0.3em] uppercase text-xs py-5 rounded-xl shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:scale-[1.02] active:scale-95 transition-all group overflow-hidden relative">
+              <button 
+                type="submit"
+                disabled={status === "sending"}
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black tracking-[0.3em] uppercase text-xs py-5 rounded-xl shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:scale-[1.02] active:scale-95 transition-all group overflow-hidden relative"
+              >
                 <span className="relative z-10 flex items-center justify-center gap-3">
-                  Send <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  {status === "sending" ? "Sending..." : "Send"}
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </button>

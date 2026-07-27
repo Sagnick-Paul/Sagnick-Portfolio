@@ -12,6 +12,7 @@ const config: Config = {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        surface: 'hsl(var(--surface))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
@@ -22,12 +23,9 @@ const config: Config = {
         },
         accent: {
           DEFAULT: 'hsl(var(--accent))',
+          dim: 'hsl(var(--accent-dim))',
           foreground: 'hsl(var(--accent-foreground))',
         },
-        neon: {
-          blue: 'hsl(var(--neon-blue))',
-          cyan: 'hsl(var(--neon-cyan))',
-        }
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
