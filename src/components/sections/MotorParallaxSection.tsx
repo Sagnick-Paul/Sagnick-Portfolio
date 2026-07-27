@@ -19,12 +19,12 @@ export default function MotorParallaxSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full flex flex-col items-center justify-center overflow-hidden py-24 lg:py-32"
+      className="relative w-full flex flex-col items-center justify-center overflow-hidden py-12 lg:py-16"
     >
       {/* Background Orbital Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[150px] -z-10 pointer-events-none animate-pulse" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[45%_55%] gap-16 lg:gap-24 items-center h-full relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[45%_55%] gap-8 lg:gap-12 items-center h-full relative z-10">
 
         {/* Left Column - Text Content */}
         <motion.div
@@ -39,7 +39,7 @@ export default function MotorParallaxSection() {
               <div className="h-0.5 w-12 bg-blue-600" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Physical_Core</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
               The Machine <br /> <span className="neon-text animate-glow-pulse">Behind</span> <br /> the Engineer
             </h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-blue-600 space-x-2 rounded-full mt-6" />
@@ -70,7 +70,7 @@ export default function MotorParallaxSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false }}
           transition={{ duration: 1 }}
-          className="relative w-full max-w-sm mx-auto rounded-[32px] overflow-hidden glass-card p-3 border-blue-500/20 shadow-[0_0_50px_rgba(37,99,235,0.1)] group"
+          className="relative w-full max-w-lg mx-auto rounded-[32px] overflow-hidden glass-card p-3 border-blue-500/20 shadow-[0_0_50px_rgba(37,99,235,0.1)] group"
         >
           {/* Parallax Container with scan-line effect */}
           <div className="relative rounded-[20px] overflow-hidden">

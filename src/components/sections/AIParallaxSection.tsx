@@ -19,12 +19,12 @@ export default function AIParallaxSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full flex flex-col items-center justify-center overflow-hidden py-24 lg:py-32"
+      className="relative w-full flex flex-col items-center justify-center overflow-hidden py-12 lg:py-16"
     >
       {/* Background Orbital Glow - Cyan/Indigo hybrid for AI feel */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 dark:bg-cyan-500/10 rounded-full blur-[150px] -z-10 pointer-events-none animate-pulse" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[45%_55%] gap-16 lg:gap-24 items-center h-full relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[45%_55%] gap-8 lg:gap-20 items-center h-full relative z-10">
 
         {/* Left Column - Text Content */}
         <motion.div
@@ -39,7 +39,7 @@ export default function AIParallaxSection() {
               <div className="h-0.5 w-12 bg-cyan-600" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-cyan-600 dark:text-cyan-400 font-mono italic">Neural_Foundation</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
               The Ghost <br /> <span className="neon-text animate-glow-pulse">In The</span> <br /> Machine
             </h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-cyan-600 to-blue-600 space-x-2 rounded-full mt-6" />
