@@ -6,6 +6,7 @@ import ProjectHero from "./ProjectHero";
 import ProjectDocumentation from "./ProjectDocumentation";
 import ProjectGallery from "./ProjectGallery";
 import TraffiqWorkflow from "@/components/projects/TraffiqWorkflow";
+import MultiAgentWorkflow from "@/components/projects/MultiAgentWorkflow";
 import fs from "fs";
 import path from "path";
 
@@ -116,10 +117,17 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
         </div>
       </div>
 
-      {/* Dedicated Full-Width Architecture Canvas for Traffiq */}
+      {/* Architecture Canvas — Traffiq */}
       {project.id === "traffiq-2025-self-driving" && (
         <section className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 my-12 z-10 relative">
           <TraffiqWorkflow />
+        </section>
+      )}
+
+      {/* Architecture Canvas — Multi-Agent Research Lab */}
+      {project.id === "multi-agent-research-lab" && (
+        <section className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 my-12 z-10 relative">
+          <MultiAgentWorkflow />
         </section>
       )}
 
