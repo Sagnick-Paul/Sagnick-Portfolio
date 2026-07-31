@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <article className="min-h-screen bg-background pb-24 animate-pulse">
       {/* Hero Section Skeleton */}
-      <div className="relative pt-32 pb-20 border-b border-border/50 bg-black/50">
+      <div className="relative pt-32 pb-20 border-b border-border/50 bg-secondary/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 mb-8 text-muted-foreground/50">
             <ArrowLeft className="w-4 h-4" />

@@ -12,10 +12,6 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Check if we are on a project page which has a dark hero section
-  const isProjectPage = pathname?.startsWith("/project/");
-  // Check if we are on a page with a dark hero section
-
   const navLinks = [
     { name: "About", href: "/#about" },
     { name: "Education", href: "/#education" },
@@ -39,18 +35,20 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${isScrolled
-        ? "bg-white/70 dark:bg-[#030712]/40 backdrop-blur-xl border-b border-gray-200/50 dark:border-blue-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_0_30px_rgba(0,124,240,0.1)]"
-        : "bg-transparent"
-        }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${
+        isScrolled
+          ? "bg-white/70 dark:bg-[#030712]/40 backdrop-blur-xl border-b border-gray-200/50 dark:border-blue-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_0_30px_rgba(0,124,240,0.1)]"
+          : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-500 ease-in-out ${isScrolled ? "h-16" : "h-20"}`}>
           <Link href="/" className="flex items-center gap-3 text-xl font-bold tracking-tighter group relative">
-            <div className={`relative w-9 h-9 rounded-xl overflow-hidden border transition-all duration-500 ${isScrolled || !isProjectPage 
-              ? "border-blue-500/20 group-hover:border-blue-400 dark:bg-blue-500/10 backdrop-blur-md" 
-              : "border-white/20 group-hover:border-white/40 bg-white/10 backdrop-blur-md"
-              } group-hover:scale-110 group-hover:rotate-3 shadow-lg`}>
+            <div className={`relative w-9 h-9 rounded-xl overflow-hidden border transition-all duration-500 ${
+              isScrolled 
+                ? "border-blue-500/20 group-hover:border-blue-400 dark:bg-blue-500/10 backdrop-blur-md" 
+                : "border-gray-300 dark:border-white/20 group-hover:border-blue-500 dark:group-hover:border-white/40 bg-white/40 dark:bg-white/10 backdrop-blur-md"
+            } group-hover:scale-110 group-hover:rotate-3 shadow-lg`}>
               <Image
                 src="/favicon.png"
                 alt="Sagnick Paul Logo"
@@ -74,12 +72,11 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-all duration-300 rounded-lg hover:bg-blue-500/5 relative group ${isScrolled
-                    ? "text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400"
-                    : isProjectPage
-                      ? "text-white/80 hover:text-white"
-                      : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                    }`}
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 rounded-lg hover:bg-blue-500/10 relative group ${
+                    isScrolled
+                      ? "text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                      : "text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-white"
+                  }`}
                 >
                   {link.name}
                   <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
@@ -95,10 +92,7 @@ export default function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 rounded-xl border transition-all duration-300 ${isScrolled 
-                ? "border-blue-500/20 text-gray-900 dark:text-white" 
-                : isProjectPage ? "border-white/20 text-white" : "border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white"
-              } hover:bg-blue-500/10 active:scale-95`}
+              className="p-2 rounded-xl border transition-all duration-300 border-gray-300 dark:border-gray-800 text-gray-900 dark:text-white hover:bg-blue-500/10 active:scale-95"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -113,20 +107,16 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-          } ${isScrolled ? "bg-white/95 dark:bg-[#030712]/95 backdrop-blur-2xl" : isProjectPage ? "bg-black/90 backdrop-blur-2xl" : "bg-white/95 dark:bg-[#030712]/90 backdrop-blur-2xl"}`}
+        className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+          isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        } bg-white/95 dark:bg-[#030712]/95 backdrop-blur-2xl border-b border-gray-200 dark:border-gray-800`}
       >
         <div className="px-6 py-8 space-y-4">
           {navLinks.map((link, idx) => (
             <Link
               key={link.name}
               href={link.href}
-              className={`block text-2xl font-bold tracking-tight transition-all duration-300 ${isScrolled
-                ? "text-gray-900 dark:text-gray-100 hover:text-blue-500"
-                : isProjectPage
-                  ? "text-white hover:text-blue-400"
-                  : "text-gray-900 dark:text-white hover:text-blue-500"
-                }`}
+              className="block text-2xl font-bold tracking-tight transition-all duration-300 text-gray-900 dark:text-white hover:text-blue-500"
               style={{ transitionDelay: `${idx * 50}ms` }}
               onClick={() => setIsMobileMenuOpen(false)}
             >

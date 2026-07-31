@@ -469,11 +469,10 @@ export default function TraffiqWorkflow() {
                 <button
                   key={step}
                   onClick={() => setActiveStep(step)}
-                  className={`w-7 h-7 rounded-lg text-xs font-mono font-bold transition-all ${
-                    isActive
+                  className={`w-7 h-7 rounded-lg text-xs font-mono font-bold transition-all ${isActive
                       ? "bg-accent text-accent-foreground shadow-md scale-110"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
-                  }`}
+                    }`}
                 >
                   {step}
                 </button>
@@ -531,7 +530,7 @@ export default function TraffiqWorkflow() {
 
           {/* Step 2: Dual Parallel Processing Branches */}
           <div className="flex-[2.5] min-w-[500px] flex flex-col gap-6 justify-center">
-            
+
             {/* Steering Branch */}
             <div className="p-4 rounded-3xl bg-blue-500/5 dark:bg-blue-500/10 border border-blue-500/20 relative shadow-inner">
               <div className="text-xs font-bold font-mono text-blue-600 dark:text-blue-400 tracking-wider uppercase mb-3 flex items-center gap-2">
@@ -602,7 +601,7 @@ export default function TraffiqWorkflow() {
               <Sliders className="w-4 h-4" />
               4. Control Arbitrator
             </div>
-            
+
             <div className="grid grid-cols-2 gap-3">
               {controlSteeringNodes.map((node) => (
                 <NodeCard
@@ -940,14 +939,13 @@ function ConnectionArrow({ isActive, isSplit, isMerge }: { isActive: boolean; is
             isSplit
               ? "M 0 40 C 20 40, 20 12, 40 12 M 0 40 C 20 40, 20 68, 40 68"
               : isMerge
-              ? "M 0 12 C 20 12, 20 40, 40 40 M 0 68 C 20 68, 20 40, 40 40"
-              : "M 0 40 L 40 40"
+                ? "M 0 12 C 20 12, 20 40, 40 40 M 0 68 C 20 68, 20 40, 40 40"
+                : "M 0 40 L 40 40"
           }
-          className={`transition-all duration-500 ${
-            isActive
+          className={`transition-all duration-500 ${isActive
               ? "stroke-accent dark:stroke-accent/90 stroke-[2.5]"
               : "stroke-border/80 stroke-1"
-          }`}
+            }`}
           strokeDasharray={isActive ? "none" : "4 4"}
         />
 
@@ -958,8 +956,8 @@ function ConnectionArrow({ isActive, isSplit, isMerge }: { isActive: boolean; is
                 isSplit
                   ? "M 0 40 C 20 40, 20 12, 40 12"
                   : isMerge
-                  ? "M 0 12 C 20 12, 20 40, 40 40"
-                  : "M 0 40 L 40 40"
+                    ? "M 0 12 C 20 12, 20 40, 40 40"
+                    : "M 0 40 L 40 40"
               }
               dur="1.2s"
               repeatCount="indefinite"
@@ -976,11 +974,10 @@ function VerticalConnector({ isActive }: { isActive: boolean }) {
   return (
     <div className="flex justify-center my-2">
       <div
-        className={`p-2 rounded-full border transition-all ${
-          isActive
+        className={`p-2 rounded-full border transition-all ${isActive
             ? "border-accent text-accent bg-accent/10 shadow-[0_0_15px_rgba(37,99,235,0.4)] animate-bounce"
             : "border-border text-muted-foreground bg-muted/40"
-        }`}
+          }`}
       >
         <ArrowDown className="w-4 h-4" />
       </div>

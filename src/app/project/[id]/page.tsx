@@ -9,8 +9,14 @@ import TraffiqWorkflow from "@/components/projects/TraffiqWorkflow";
 import fs from "fs";
 import path from "path";
 
-// Helper function to dynamically read images from public folders with fallbacks
+// Helper function to dynamically read images from public folders with fallbacks (cached in RAM)
+const imageCacheMap = new Map<string, string[]>();
+
 function getProjectImages(project: any): string[] {
+  if (imageCacheMap.has(project.id)) {
+    return imageCacheMap.get(project.id)!;
+  }
+
   const foldersToTry = [];
   if (project.imageFolder) {
     foldersToTry.push(project.imageFolder);
@@ -31,6 +37,7 @@ function getProjectImages(project: any): string[] {
           .filter((file) => imageExtensions.includes(path.extname(file).toLowerCase()))
           .map((file) => `/${folder}/${file}`);
         if (images.length > 0) {
+          imageCacheMap.set(project.id, images);
           return images;
         }
       } catch (e) {
@@ -39,8 +46,9 @@ function getProjectImages(project: any): string[] {
     }
   }
 
-  // Fallback to static list in project.images if we found nothing in folders
-  return project.images || [];
+  const fallbackImages = project.images || [];
+  imageCacheMap.set(project.id, fallbackImages);
+  return fallbackImages;
 }
 
 export async function generateStaticParams() {
@@ -80,7 +88,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
               <span className="p-2 rounded-lg bg-accent/10 text-accent"><TriangleAlert className="w-5 h-5" /></span>
               The Problem
             </h2>
-            <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed p-6 rounded-2xl bg-secondary/50 border border-border/50 text-lg">
+            <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed p-6 rounded-2xl bg-secondary/50 border border-border/50 text-lg">
               {project.problem}
             </div>
           </section>
@@ -90,7 +98,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
               <span className="p-2 rounded-lg bg-accent/10 text-accent"><Cpu className="w-5 h-5" /></span>
               Approach & Methodology
             </h2>
-            <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed p-6 rounded-2xl bg-secondary/50 border border-border/50 text-lg">
+            <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed p-6 rounded-2xl bg-secondary/50 border border-border/50 text-lg">
               {project.approach}
             </div>
           </section>
@@ -101,7 +109,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
               <span className="p-2 rounded-lg bg-accent/10 text-accent"><Layout className="w-5 h-5" /></span>
               Architecture & System Design
             </h2>
-            <div className="prose prose-invert max-w-none text-muted-foreground leading-relaxed p-6 rounded-2xl bg-secondary/50 border border-border/50 border-l-4 border-l-accent text-lg">
+            <div className="prose dark:prose-invert max-w-none text-muted-foreground leading-relaxed p-6 rounded-2xl bg-secondary/50 border border-border/50 border-l-4 border-l-accent text-lg">
               {project.architecture}
             </div>
           </section>
