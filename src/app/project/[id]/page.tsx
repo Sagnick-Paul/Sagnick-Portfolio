@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import ProjectHero from "./ProjectHero";
 import ProjectDocumentation from "./ProjectDocumentation";
 import ProjectGallery from "./ProjectGallery";
+import TraffiqWorkflow from "@/components/projects/TraffiqWorkflow";
 import fs from "fs";
 import path from "path";
 
@@ -94,7 +95,7 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
             </div>
           </section>
 
-          {/* Architecture / System Design */}
+          {/* Architecture / System Design Text */}
           <section>
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
               <span className="p-2 rounded-lg bg-accent/10 text-accent"><Layout className="w-5 h-5" /></span>
@@ -104,7 +105,18 @@ export default function ProjectDetail({ params }: { params: { id: string } }) {
               {project.architecture}
             </div>
           </section>
+        </div>
+      </div>
 
+      {/* Dedicated Full-Width Architecture Canvas for Traffiq */}
+      {project.id === "traffiq-2025-self-driving" && (
+        <section className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 my-12 z-10 relative">
+          <TraffiqWorkflow />
+        </section>
+      )}
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+        <div className="space-y-20">
           {/* Challenges & Solutions */}
           <section>
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
