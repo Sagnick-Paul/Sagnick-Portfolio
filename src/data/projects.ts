@@ -149,6 +149,33 @@ export const projects: Project[] = [
       github: "https://github.com/Sagnick-Paul/Jet-Image-Classification-CNN",
     },
     featured: true,
+  },
+  {
+    id: "multi-agent-research-lab",
+    title: "Multi-Agent Research Laboratory",
+    description: "Full-stack AI application automating deep research workflows via specialized LangChain/LangGraph agents streaming live over Server-Sent Events (SSE).",
+    techStack: ["FastAPI", "React", "TypeScript", "LangChain", "LangGraph", "Mistral AI", "Tavily API", "TailwindCSS"],
+    images: [
+      "/projects/multi-agent-research-lab.jpg"
+    ],
+    problem: "Conducting deep, structured web research and synthesizing multi-source findings into accurate, evaluated reports is highly manual, inefficient, and time-consuming.",
+    approach: "Built a 4-step autonomous multi-agent pipeline using LangChain/LangGraph and Mistral AI. The system orchestrates web search via Tavily API, content extraction via BeautifulSoup web scraping, structured report drafting with specialized prompts, and automated critic scoring.",
+    architecture: "Decoupled architecture comprising a FastAPI Python backend serving an SSE (Server-Sent Events) endpoint, and a Vite/React 18 frontend dashboard. The pipeline streams asynchronous status updates, logs, and generated Markdown payloads in real time directly to the browser.",
+    challenges: [
+      "Orchestrating asynchronous agent state transitions and preventing event-loop bottlenecks by delegating blocking tool calls to threads.",
+      "Ensuring smooth real-time stream buffering across Nginx/Render proxy layers by configuring custom SSE headers.",
+      "Establishing robust wire protocol data contracts between Python Pydantic enums/models and TypeScript interfaces."
+    ],
+    results: [
+      "Successfully automated end-to-end research workflows from query submission to critical evaluation.",
+      "Delivered live progress monitoring and instant Markdown export (PDF/DOCX) on a responsive dashboard.",
+      "Achieved 93% knowledge graph extraction density across system architecture nodes via Graphify analysis."
+    ],
+    links: {
+      github: "https://github.com/Sagnick-Paul/Multi-AI-Agent-System",
+      live: "https://multi-ai-agent-system.onrender.com/"
+    },
+    featured: true,
   }
 ];
 

@@ -47,6 +47,11 @@ export const portfolioKnowledge = {
       title: "Jet Image Classification & Anomaly Detection",
       description: "CNN classifier and Autoencoder-based anomaly detection for jet images.",
       tags: ["Machine Learning", "Autoencoders", "CNN"]
+    },
+    {
+      title: "Multi-Agent Research Laboratory",
+      description: "Full-stack AI deep research automation pipeline with LangChain/LangGraph agents & live SSE streaming.",
+      tags: ["Multi-Agent Systems", "LangChain", "FastAPI", "React", "SSE"]
     }
   ],
   research_interests: [
