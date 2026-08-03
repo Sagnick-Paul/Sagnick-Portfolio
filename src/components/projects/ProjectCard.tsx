@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Variants, type Transition } from "framer-motion";
 import { ExternalLink, Github, ArrowRight, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +16,15 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  const cardVariants = {
+  const EASE_OUT_QUART = [0.25, 0.46, 0.45, 0.94] as [number, number, number, number];
+
+  const springTransition: Transition = {
+    type: "spring",
+    stiffness: 300,
+    damping: 24,
+  };
+
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -24,20 +32,20 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       transition: {
         duration: 0.5,
         delay: index * 0.12,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: EASE_OUT_QUART,
       },
     },
   };
 
-  const imageVariants = {
+  const imageVariants: Variants = {
     rest: { scale: 1 },
     hover: {
       scale: prefersReducedMotion ? 1 : 1.05,
-      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+      transition: { duration: 0.5, ease: EASE_OUT_QUART },
     },
   };
 
-  const hoverCardVariants = {
+  const hoverCardStyle = {
     rest: {
       y: 0,
       boxShadow:
@@ -47,24 +55,21 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       y: prefersReducedMotion ? 0 : -8,
       boxShadow:
         "0 8px 32px rgba(37,99,235,0.12), 0 20px 60px rgba(0,0,0,0.15)",
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 24,
-      },
     },
-  };
+  } as const;
 
   return (
     <motion.article
       variants={cardVariants}
       initial="hidden"
+      viewport={{ once: false, amount: 0.2 }}
       whileInView="visible"
-      viewport={{ once: false, amount: 0.2, margin: "-60px" }}
       animate={isHovered ? "hover" : "rest"}
+      whileHover={isHovered ? "hover" : undefined}
+      transition={isHovered ? springTransition : undefined}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      style={hoverCardVariants[isHovered ? "hover" : "rest"]}
+      style={hoverCardStyle[isHovered ? "hover" : "rest"]}
       className={`
         group relative flex flex-col overflow-hidden rounded-[22px]
         bg-white dark:bg-[hsl(223,17%,8%)]
