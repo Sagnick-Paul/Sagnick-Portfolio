@@ -81,7 +81,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       aria-label={`Project: ${project.title}`}
     >
       {/* ── Thumbnail ─────────────────────────────────── */}
-      <div className="relative w-full overflow-hidden aspect-video">
+      <div className="relative w-full overflow-hidden aspect-[2.2/1]">
         <motion.div
           variants={imageVariants}
           animate={isHovered ? "hover" : "rest"}
@@ -98,15 +98,15 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </motion.div>
 
         {/* Gradient fade bottom of image into card content */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[hsl(223,17%,8%)] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white dark:from-[hsl(223,17%,8%)] to-transparent pointer-events-none" />
       </div>
 
       {/* ── Content ───────────────────────────────────── */}
-      <div className="flex flex-col flex-1 px-7 pb-7 pt-5 gap-4">
+      <div className="flex flex-col flex-1 px-6 pb-6 pt-4 gap-3">
         {/* Title */}
         <h3
           className={`
-            text-2xl md:text-[1.6rem] font-black tracking-tight leading-tight
+            text-xl md:text-2xl font-black tracking-tight leading-tight
             transition-colors duration-300
             ${isHovered
               ? "text-blue-600 dark:text-blue-400"
@@ -128,12 +128,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             {project.metrics.map((metric) => (
               <div
                 key={metric.label}
-                className="flex flex-col items-center px-3.5 py-2 rounded-xl bg-blue-50 dark:bg-blue-500/[0.08] border border-blue-100 dark:border-blue-500/20"
+                className="flex flex-col items-center px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-500/[0.08] border border-blue-100 dark:border-blue-500/20"
               >
-                <span className="text-[11px] font-black uppercase tracking-widest text-blue-500/70 dark:text-blue-400/60">
+                <span className="text-[10px] font-black uppercase tracking-widest text-blue-500/70 dark:text-blue-400/60">
                   {metric.label}
                 </span>
-                <span className="text-sm font-black text-blue-700 dark:text-blue-300 mt-0.5">
+                <span className="text-xs font-black text-blue-700 dark:text-blue-300 mt-0.5">
                   {metric.value}
                 </span>
               </div>
@@ -162,7 +162,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="flex-1" />
 
         {/* Action row */}
-        <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-white/[0.06]">
+        <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-white/[0.06]">
           {/* Icon actions */}
           <div className="flex items-center gap-2">
             {project.links.github && (

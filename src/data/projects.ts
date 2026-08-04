@@ -188,7 +188,7 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/Sagnick-Paul/Jet-Image-Classification-CNN",
     },
-    featured: true,
+    featured: false,
   },
   {
     id: "multi-agent-research-lab",
