@@ -57,14 +57,15 @@ export default function Education() {
     },
   ];
 
-  return (    <section id="education" className="py-32 relative">
+  return (
+    <section id="education" className="pt-8 pb-24 lg:pt-10 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20"
+          className="mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-slate-900 dark:text-white">
             Educational <span className="neon-text">Vector</span>

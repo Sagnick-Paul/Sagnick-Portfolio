@@ -19,7 +19,7 @@ export default function AIParallaxSection() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full flex flex-col items-center justify-center overflow-hidden py-12 lg:py-16"
+      className="relative w-full flex flex-col items-center justify-center overflow-hidden pt-12 lg:pt-16 pb-4 lg:pb-6"
     >
       {/* Background Orbital Glow - Cyan/Indigo hybrid for AI feel */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 dark:bg-cyan-500/10 rounded-full blur-[150px] -z-10 pointer-events-none animate-pulse" />
