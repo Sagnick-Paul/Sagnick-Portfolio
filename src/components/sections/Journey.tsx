@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
-import { Code, Zap, Database, Brain, Bot, Network, ChevronDown, ChevronUp } from "lucide-react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
+import { motion, useMotionValue, useTransform, useSpring, useReducedMotion, AnimatePresence } from "framer-motion";
+import { Code, Zap, Database, Brain, Bot, Network, X, Sparkles } from "lucide-react";
 
 interface Milestone {
     id: number;
@@ -82,196 +82,84 @@ const milestones: Milestone[] = [
     },
 ];
 
-function MilestoneCard({
+function MilestonePanel({
     milestone,
     index,
-    expandedId,
+    isExpanded,
     toggleExpand,
 }: {
     milestone: Milestone;
     index: number;
-    expandedId: number | null;
-    toggleExpand: (id: number) => void;
-}) {
-    const isLeft = index % 2 === 0;
-    const isExpanded = expandedId === milestone.id;
-    const cardAlign = isLeft ? "right" : "left";
-
-    return (
-        <div className="relative grid grid-cols-[auto_1fr] md:grid-cols-[1fr_auto_1fr] items-start gap-0 w-full">
-            {/* Left column — desktop */}
-            <div className="hidden md:flex justify-end items-start pr-4 md:pr-6 w-full">
-                {isLeft && (
-                    <div className="w-full max-w-lg">
-                        <MilestoneContent
-                            milestone={milestone}
-                            isExpanded={isExpanded}
-                            toggleExpand={toggleExpand}
-                            align={cardAlign}
-                        />
-                    </div>
-                )}
-            </div>
-
-            {/* Center Node */}
-            <div className="flex flex-col items-center relative z-10 pt-2 px-0">
-                <motion.div
-                    animate={isExpanded ? { scale: 1.25, rotate: 180 } : { scale: 1, rotate: 0 }}
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                    className={`relative flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-xl border transition-all duration-500 ${
-                        isExpanded
-                            ? "border-cyan-400 bg-blue-600 shadow-[0_0_30px_rgba(6,182,212,0.8)]"
-                            : "border-blue-500/30 bg-background shadow-[0_0_20px_rgba(37,99,235,0.3)]"
-                    }`}
-                >
-                    <div className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                        isExpanded
-                            ? "bg-white shadow-[0_0_15px_rgba(255,255,255,1)]"
-                            : "bg-blue-500 shadow-[0_0_12px_rgba(37,99,235,1)] animate-pulse"
-                    }`} />
-                    <div className="absolute -inset-2 border border-blue-500/10 rounded-3xl animate-[spin_10s_linear_infinite] pointer-events-none" />
-                </motion.div>
-            </div>
-
-            {/* Right column — desktop & mobile */}
-            <div className="pl-4 md:pl-6 w-full">
-                {/* Mobile view */}
-                <div className="md:hidden">
-                    <MilestoneContent
-                        milestone={milestone}
-                        isExpanded={isExpanded}
-                        toggleExpand={toggleExpand}
-                        align="left"
-                    />
-                </div>
-
-                {/* Desktop view */}
-                {!isLeft && (
-                    <div className="hidden md:block w-full max-w-lg">
-                        <MilestoneContent
-                            milestone={milestone}
-                            isExpanded={isExpanded}
-                            toggleExpand={toggleExpand}
-                            align={cardAlign}
-                        />
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-}
-
-function MilestoneContent({
-    milestone,
-    isExpanded,
-    toggleExpand,
-    align,
-}: {
-    milestone: Milestone;
     isExpanded: boolean;
     toggleExpand: (id: number) => void;
-    align: "left" | "right";
 }) {
     const Icon = milestone.icon;
 
     return (
         <motion.div
-            layout
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", bounce: 0.1, duration: 0.35 }}
-            className={`relative glass-card p-4 md:p-6 cursor-pointer overflow-hidden transition-all duration-500 rounded-2xl border ${
+            className={`relative glass-card p-6 md:p-8 cursor-pointer overflow-hidden transition-all duration-500 rounded-3xl border w-[320px] sm:w-[380px] md:w-[420px] shrink-0 flex flex-col justify-between ${
                 isExpanded
-                    ? "border-blue-500 dark:border-cyan-400 shadow-[0_0_50px_rgba(37,99,235,0.35)] dark:shadow-[0_0_50px_rgba(6,182,212,0.25)] ring-2 ring-blue-500/40 dark:ring-cyan-400/40 bg-gradient-to-br from-blue-500/[0.09] via-white/90 dark:via-[#090d16]/95 to-cyan-500/[0.07]"
+                    ? "border-blue-500 dark:border-cyan-400 shadow-[0_0_50px_rgba(37,99,235,0.35)] dark:shadow-[0_0_50px_rgba(6,182,212,0.25)] ring-2 ring-blue-500/40 dark:ring-cyan-400/40 bg-gradient-to-br from-blue-500/[0.09] via-white/90 dark:via-[#090d16]/95 to-cyan-500/[0.07] scale-[1.02]"
                     : "border-slate-200/80 dark:border-white/[0.08] hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(37,99,235,0.15)]"
             }`}
             onClick={() => toggleExpand(milestone.id)}
         >
-            {/* Exploded background glow overlay when expanded */}
             {isExpanded && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute inset-0 bg-gradient-to-r from-blue-500/15 via-cyan-500/10 to-blue-500/15 blur-2xl pointer-events-none"
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/15 via-cyan-500/10 to-blue-500/15 blur-2xl pointer-events-none" />
             )}
 
-            <div className={`absolute ${align === "right" ? "-top-10 -left-10" : "-top-10 -right-10"} w-28 h-28 bg-blue-500/10 blur-3xl pointer-events-none`} />
+            <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 blur-3xl pointer-events-none" />
 
-            <div className={`flex items-start gap-4 mb-3 ${align === "right" ? "flex-row-reverse text-right" : ""}`}>
-                <div className={`flex items-center justify-center p-3 rounded-xl border transition-all duration-500 shrink-0 ${
-                    isExpanded
-                        ? "bg-blue-600 text-white border-cyan-400 shadow-[0_0_20px_rgba(37,99,235,0.8)] scale-110"
-                        : "bg-blue-500/10 text-blue-500 border-blue-500/20 group-hover/card:bg-blue-500/20 group-hover/card:scale-110"
-                }`}>
-                    <Icon className="w-5 h-5" />
-                </div>
-                <div className="flex-1">
-                    <div className={`flex items-center justify-between mb-1 ${align === "right" ? "flex-row-reverse" : ""}`}>
-                        <span className={`text-[10px] font-black uppercase tracking-[0.3em] font-mono italic transition-colors ${
+            <div>
+                <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                        <div className={`flex items-center justify-center p-3 rounded-2xl border transition-all duration-500 shrink-0 ${
+                            isExpanded
+                                ? "bg-blue-600 text-white border-cyan-400 shadow-[0_0_20px_rgba(37,99,235,0.8)] scale-110"
+                                : "bg-blue-500/10 text-blue-500 border-blue-500/20 group-hover:bg-blue-500/20"
+                        }`}>
+                            <Icon className="w-5 h-5" />
+                        </div>
+                        <span className={`text-xs font-black uppercase tracking-[0.35em] font-mono italic transition-colors ${
                             isExpanded ? "text-cyan-500 dark:text-cyan-300" : "text-blue-600 dark:text-blue-400"
                         }`}>
                             {milestone.year}
                         </span>
-                        <div className="text-[9px] font-bold text-blue-500/40 font-mono tracking-tighter">ID: 00{milestone.id}</div>
                     </div>
-                    <h3 className={`text-lg md:text-xl font-black tracking-tight leading-tight transition-colors ${
-                        isExpanded ? "text-blue-600 dark:text-cyan-300" : "text-slate-900 dark:text-white"
-                    }`}>
-                        {milestone.title}
-                    </h3>
+
+                    <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold text-blue-500/40 font-mono tracking-tighter">0{milestone.id}</span>
+                        <motion.div
+                            animate={isExpanded ? { scale: 1.25, rotate: 180 } : { scale: 1, rotate: 0 }}
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                            className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                                isExpanded
+                                    ? "border-cyan-400 bg-blue-600 shadow-[0_0_12px_rgba(6,182,212,0.8)]"
+                                    : "border-blue-500/30 bg-background"
+                            }`}
+                        >
+                            <div className={`w-1.5 h-1.5 rounded-full ${isExpanded ? "bg-white" : "bg-blue-500"}`} />
+                        </motion.div>
+                    </div>
                 </div>
+
+                <h3 className={`text-xl md:text-2xl font-black tracking-tight leading-tight mb-3 transition-colors ${
+                    isExpanded ? "text-blue-600 dark:text-cyan-300" : "text-slate-900 dark:text-white"
+                }`}>
+                    {milestone.title}
+                </h3>
+
+                <p className="text-slate-600 dark:text-slate-300 text-sm font-medium leading-relaxed mb-6">
+                    {milestone.shortDesc}
+                </p>
             </div>
 
-            <p className={`text-slate-600 dark:text-slate-300 text-sm font-medium leading-relaxed ${align === "right" ? "text-right" : ""}`}>
-                {milestone.shortDesc}
-            </p>
-
-            {/* Extended Details — rendered directly BELOW the block */}
-            <AnimatePresence>
-                {isExpanded && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                        className="overflow-hidden pt-4 mt-4 border-t border-blue-500/20 dark:border-cyan-500/30"
-                    >
-                        <div className={`flex items-center justify-between mb-3 ${align === "right" ? "flex-row-reverse" : ""}`}>
-                            <span className="text-[10px] font-black text-cyan-600 dark:text-cyan-400 uppercase tracking-[0.35em] font-mono italic flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                                Extended_Log
-                            </span>
-                        </div>
-
-                        <div className="space-y-3">
-                            {milestone.longDesc.map((desc, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ type: "spring", bounce: 0, duration: 0.3, delay: i * 0.06 }}
-                                    className={`text-sm text-slate-700 dark:text-slate-200 flex gap-3 items-start font-medium ${
-                                        align === "right" ? "flex-row-reverse text-right" : ""
-                                    }`}
-                                >
-                                    <div className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.8)] shrink-0" />
-                                    <span className="leading-relaxed">{desc}</span>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            <div className={`flex items-center gap-2 mt-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all ${
+            <div className={`flex items-center justify-between pt-4 border-t border-blue-500/10 text-[10px] font-black uppercase tracking-[0.2em] transition-all ${
                 isExpanded ? "text-cyan-500 dark:text-cyan-300" : "text-blue-600 dark:text-blue-400"
-            } ${align === "right" ? "justify-end" : ""}`}>
-                {isExpanded ? (
-                    <>Collapse Details <ChevronUp className="w-4 h-4" /></>
-                ) : (
-                    <>View Details <ChevronDown className="w-4 h-4" /></>
-                )}
+            }`}>
+                <span>{isExpanded ? "Collapse Log" : "View Extended Log"}</span>
             </div>
         </motion.div>
     );
@@ -279,91 +167,290 @@ function MilestoneContent({
 
 export default function Journey() {
     const sectionRef = useRef<HTMLElement>(null);
+    const viewportRef = useRef<HTMLDivElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
+
     const [expandedId, setExpandedId] = useState<number | null>(null);
+    const [maxTranslate, setMaxTranslate] = useState(0);
 
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start center", "end center"],
-    });
+    const prefersReducedMotion = useReducedMotion();
 
-    const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+    // High performance MotionValue tracking horizontal progress (0.0 to 1.0)
+    const journeyProgress = useMotionValue(0);
+
+    // Map journeyProgress directly to maxTranslate horizontal offset
+    const rawX = useTransform(journeyProgress, [0, 1], [0, -maxTranslate]);
+    const smoothX = useSpring(rawX, { damping: 32, stiffness: 240, mass: 0.1 });
+    const x = prefersReducedMotion ? 0 : smoothX;
+
+    // Content-aware geometry calculation using ResizeObserver
+    useLayoutEffect(() => {
+        const updateGeometry = () => {
+            if (trackRef.current && viewportRef.current) {
+                const trackWidth = trackRef.current.scrollWidth;
+                const viewportWidth = viewportRef.current.clientWidth;
+                const overflow = Math.max(0, trackWidth - viewportWidth);
+                setMaxTranslate(overflow);
+            }
+        };
+
+        updateGeometry();
+
+        const resizeObserver = new ResizeObserver(updateGeometry);
+        if (trackRef.current) resizeObserver.observe(trackRef.current);
+        if (viewportRef.current) resizeObserver.observe(viewportRef.current);
+
+        return () => resizeObserver.disconnect();
+    }, []);
+
+    // Non-passive wheel & touch event handler converting deltaY to horizontal progress
+    useEffect(() => {
+        if (prefersReducedMotion) return;
+
+        const sectionEl = sectionRef.current;
+        if (!sectionEl) return;
+
+        let touchStartY = 0;
+        const scrollSensitivity = 1400; // Smooth 1:1 wheel/trackpad scaling
+
+        const handleWheel = (e: WheelEvent) => {
+            const rect = sectionEl.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            // Check if section is centered/active in viewport
+            const isCentered = rect.top <= 100 && rect.bottom >= viewportHeight - 100;
+            if (!isCentered) return;
+
+            const deltaY = e.deltaY;
+            const current = journeyProgress.get();
+
+            if (deltaY > 0) {
+                // Downward scroll input -> advance horizontal progress rightward
+                if (current < 1) {
+                    e.preventDefault();
+                    if (Math.abs(rect.top) > 5) {
+                        window.scrollTo({ top: window.scrollY + rect.top, behavior: "instant" as ScrollBehavior });
+                    }
+                    const next = Math.min(1, current + deltaY / scrollSensitivity);
+                    journeyProgress.set(next);
+                }
+            } else if (deltaY < 0) {
+                // Upward scroll input -> advance horizontal progress leftward
+                if (current > 0) {
+                    e.preventDefault();
+                    if (Math.abs(rect.top) > 5) {
+                        window.scrollTo({ top: window.scrollY + rect.top, behavior: "instant" as ScrollBehavior });
+                    }
+                    const next = Math.max(0, current + deltaY / scrollSensitivity);
+                    journeyProgress.set(next);
+                }
+            }
+        };
+
+        const handleTouchStart = (e: TouchEvent) => {
+            if (e.touches.length === 1) {
+                touchStartY = e.touches[0].clientY;
+            }
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (e.touches.length !== 1) return;
+            const rect = sectionEl.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            const isCentered = rect.top <= 100 && rect.bottom >= viewportHeight - 100;
+            if (!isCentered) return;
+
+            const currentY = e.touches[0].clientY;
+            const deltaY = touchStartY - currentY;
+            const current = journeyProgress.get();
+
+            if (deltaY > 0 && current < 1) {
+                e.preventDefault();
+                const next = Math.min(1, current + deltaY / 400);
+                journeyProgress.set(next);
+                touchStartY = currentY;
+            } else if (deltaY < 0 && current > 0) {
+                e.preventDefault();
+                const next = Math.max(0, current + deltaY / 400);
+                journeyProgress.set(next);
+                touchStartY = currentY;
+            }
+        };
+
+        sectionEl.addEventListener("wheel", handleWheel, { passive: false });
+        sectionEl.addEventListener("touchstart", handleTouchStart, { passive: true });
+        sectionEl.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+        return () => {
+            sectionEl.removeEventListener("wheel", handleWheel);
+            sectionEl.removeEventListener("touchstart", handleTouchStart);
+            sectionEl.removeEventListener("touchmove", handleTouchMove);
+        };
+    }, [prefersReducedMotion, journeyProgress]);
 
     const toggleExpand = (id: number) => {
         setExpandedId(expandedId === id ? null : id);
     };
 
-    return (
-        <section ref={sectionRef} id="journey" className="relative py-12 lg:py-16 bg-transparent z-10">
-            {/* Background Glow removed to keep it 'just black' */}
+    const selectedMilestone = milestones.find((m) => m.id === expandedId);
 
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-10 lg:mb-12 text-center"
-                >
-                    <div className="flex items-center justify-center gap-4 mb-3">
-                        <div className="h-0.5 w-12 bg-blue-600" />
+    // Accessible vertical fallback for reduced motion
+    if (prefersReducedMotion) {
+        return (
+            <section id="journey" className="py-20 relative bg-transparent z-10">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="mb-12 text-center">
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Chronicle</span>
-                        <div className="h-0.5 w-12 bg-blue-600" />
+                        <h2 className="text-3xl md:text-4xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic mt-2">
+                            The <span className="neon-text">Journey</span>
+                        </h2>
                     </div>
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
-                        The <span className="neon-text">Journey</span>
-                    </h2>
-                    <p className="text-slate-600 dark:text-slate-400 text-base font-medium mt-3 max-w-xl mx-auto">
-                        A narrative of progress — from first principles to frontier research.
-                    </p>
-                </motion.div>
-
-                {/* Vertical Timeline */}
-                <div className="relative">
-                    {/* Track line — centered on desktop, aligned to node column on mobile */}
-                    {/* Desktop: absolute center */}
-                    <div className="hidden md:block">
-                        {/* Static background track */}
-                        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-blue-500/10 rounded-full" />
-                        {/* Animated progress track */}
-                        <motion.div
-                            className="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] bg-gradient-to-b from-blue-600 via-cyan-400 to-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.6)] rounded-full origin-top"
-                            style={{ scaleY, height: "100%" }}
-                        />
+                    <div className="space-y-6">
+                        {milestones.map((milestone) => (
+                            <div key={milestone.id} className="glass-card p-6 rounded-2xl border border-slate-200 dark:border-white/10">
+                                <span className="text-xs font-mono text-blue-500 font-black">{milestone.year}</span>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">{milestone.title}</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-300 mt-2">{milestone.shortDesc}</p>
+                            </div>
+                        ))}
                     </div>
+                </div>
+            </section>
+        );
+    }
 
-                    {/* Mobile: track aligned to the node (left edge + half node width ~30px) */}
-                    <div className="md:hidden">
-                        <div className="absolute left-[23px] top-0 bottom-0 w-[2px] bg-blue-500/10 rounded-full" />
-                        <motion.div
-                            className="absolute left-[23px] top-0 w-[2px] bg-gradient-to-b from-blue-600 via-cyan-400 to-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.6)] rounded-full origin-top"
-                            style={{ scaleY, height: "100%" }}
-                        />
-                    </div>
+    return (
+        <section
+            ref={sectionRef}
+            id="journey"
+            className="h-screen min-h-[650px] relative flex flex-col justify-between py-12 lg:py-16 bg-transparent z-10 overflow-hidden select-none"
+        >
+            {/* Viewport Container */}
+            <div
+                ref={viewportRef}
+                className="w-full h-full flex flex-col justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative"
+            >
+                {/* Header Chrome */}
+                <div className="w-full z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="flex flex-col md:flex-row md:items-end justify-between gap-4"
+                    >
+                        <div>
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="h-0.5 w-10 bg-blue-600" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 font-mono italic">Chronicle</span>
+                            </div>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic leading-[0.9]">
+                                The <span className="neon-text">Journey</span>
+                            </h2>
+                        </div>
 
-                    {/* Milestone items */}
-                    <div className="flex flex-col gap-8 md:gap-10 relative">
+                        <div className="flex items-center gap-3 shrink-0">
+                            <span className="text-xs font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 flex items-center gap-2">
+                                <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
+                                Scroll Down To Traverse
+                            </span>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Horizontal Storytelling Track */}
+                <div className="relative w-full my-auto py-4">
+                    {/* Glowing horizontal connector line passing behind nodes */}
+                    <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-600 opacity-25 pointer-events-none" />
+
+                    {/* Translating Track */}
+                    <motion.div
+                        ref={trackRef}
+                        style={{ x }}
+                        className="flex gap-6 lg:gap-8 w-max px-4"
+                    >
                         {milestones.map((milestone, index) => (
-                            <MilestoneCard
+                            <MilestonePanel
                                 key={milestone.id}
                                 milestone={milestone}
                                 index={index}
-                                expandedId={expandedId}
+                                isExpanded={expandedId === milestone.id}
                                 toggleExpand={toggleExpand}
                             />
                         ))}
-                    </div>
+                    </motion.div>
+                </div>
 
-                    {/* End cap */}
-                    <div className="flex justify-center md:justify-center justify-start pl-[17px] md:pl-0 mt-6">
+                {/* Footer Scrubber & Journey Progress Indicator */}
+                <div className="w-full z-10">
+                    <div className="flex items-center justify-between gap-4 mb-2 text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                        <span>2023 Start</span>
+                        <span>Horizontal Journey Progress</span>
+                        <span>2026 Frontier</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden p-[1px]">
                         <motion.div
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            viewport={{ once: true }}
-                            className="w-5 h-5 rounded-full bg-blue-600 shadow-[0_0_20px_rgba(37,99,235,0.8)] border-2 border-blue-400"
+                            className="h-full bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.8)] origin-left"
+                            style={{ scaleX: journeyProgress }}
                         />
                     </div>
                 </div>
+
+                {/* Extended Log Details Modal Overlay */}
+                <AnimatePresence>
+                    {selectedMilestone && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/60 backdrop-blur-xl"
+                            onClick={() => setExpandedId(null)}
+                        >
+                            <motion.div
+                                initial={{ scale: 0.9, y: 20, opacity: 0 }}
+                                animate={{ scale: 1, y: 0, opacity: 1 }}
+                                exit={{ scale: 0.9, y: 20, opacity: 0 }}
+                                transition={{ type: "spring", bounce: 0.1, duration: 0.35 }}
+                                className="glass-card max-w-2xl w-full p-6 md:p-8 rounded-3xl border border-blue-500/40 dark:border-cyan-400/40 shadow-[0_0_80px_rgba(37,99,235,0.3)] bg-white/95 dark:bg-[#090d16]/95 relative overflow-hidden"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <div className="flex items-center justify-between mb-6 border-b border-blue-500/10 pb-4">
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-xs font-black uppercase tracking-[0.35em] text-cyan-600 dark:text-cyan-400 font-mono italic">
+                                            {selectedMilestone.year} Extended_Log
+                                        </span>
+                                        <span className="text-lg font-black text-slate-900 dark:text-white border-l border-blue-500/20 pl-3">
+                                            {selectedMilestone.title}
+                                        </span>
+                                    </div>
+                                    <motion.button
+                                        whileTap={{ scale: 0.9 }}
+                                        onClick={() => setExpandedId(null)}
+                                        className="p-2 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-500 transition-colors"
+                                        aria-label="Close modal"
+                                    >
+                                        <X className="w-5 h-5" />
+                                    </motion.button>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {selectedMilestone.longDesc.map((desc, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: i * 0.08 }}
+                                            className="flex gap-3 items-start text-sm text-slate-700 dark:text-slate-200 font-medium p-4 rounded-2xl bg-blue-500/[0.04] dark:bg-white/[0.03] border border-blue-500/10 dark:border-white/[0.06]"
+                                        >
+                                            <div className="mt-1.5 h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.8)] shrink-0" />
+                                            <span className="leading-relaxed">{desc}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );
