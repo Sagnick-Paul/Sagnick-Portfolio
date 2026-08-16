@@ -20,8 +20,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
   const springTransition: Transition = {
     type: "spring",
-    stiffness: 300,
-    damping: 24,
+    bounce: 0.12,
+    duration: 0.4,
   };
 
   const cardVariants: Variants = {
@@ -41,7 +41,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     rest: { scale: 1 },
     hover: {
       scale: prefersReducedMotion ? 1 : 1.05,
-      transition: { duration: 0.5, ease: EASE_OUT_QUART },
+      transition: springTransition,
     },
   };
 
@@ -66,6 +66,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView="visible"
       animate={isHovered ? "hover" : "rest"}
       whileHover={isHovered ? "hover" : undefined}
+      whileTap={{ scale: prefersReducedMotion ? 1 : 0.98 }}
       transition={isHovered ? springTransition : undefined}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
@@ -166,37 +167,43 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {/* Icon actions */}
           <div className="flex items-center gap-2">
             {project.links.github && (
-              <Link
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`GitHub repository for ${project.title}`}
-                className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/[0.08] text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-500/40 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-all duration-200"
-              >
-                <Github className="w-4 h-4" />
-              </Link>
+              <motion.div whileTap={{ scale: 0.92 }}>
+                <Link
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`GitHub repository for ${project.title}`}
+                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/[0.08] text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-500/40 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-all duration-200"
+                >
+                  <Github className="w-4 h-4" />
+                </Link>
+              </motion.div>
             )}
             {project.links.live && (
-              <Link
-                href={project.links.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Live demo for ${project.title}`}
-                className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/[0.08] text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-500/40 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-all duration-200"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </Link>
+              <motion.div whileTap={{ scale: 0.92 }}>
+                <Link
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Live demo for ${project.title}`}
+                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/[0.08] text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-500/40 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-all duration-200"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </Link>
+              </motion.div>
             )}
           </div>
 
           {/* View Case Study CTA */}
-          <Link
-            href={`/project/${project.id}`}
-            className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400 hover:gap-3 transition-all duration-200 focus:outline-none focus-visible:underline"
-            aria-label={`View case study for ${project.title}`}
-          >
-            Case Study <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <motion.div whileTap={{ scale: 0.96 }}>
+            <Link
+              href={`/project/${project.id}`}
+              className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400 hover:gap-3 transition-all duration-200 focus:outline-none focus-visible:underline"
+              aria-label={`View case study for ${project.title}`}
+            >
+              Case Study <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </motion.div>
         </div>
       </div>
     </motion.article>

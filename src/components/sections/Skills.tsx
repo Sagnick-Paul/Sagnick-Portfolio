@@ -68,8 +68,10 @@ export default function Skills() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className="glass-card p-10 hover:border-blue-500/30 transition-all duration-500 group"
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.985 }}
+              transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
+              className="glass-card p-10 hover:border-blue-500/30 transition-colors duration-300 group"
             >
               <h3 className="text-xl font-black mb-10 flex items-center text-slate-900 dark:text-white uppercase tracking-[0.2em] italic border-b border-blue-500/10 pb-4">
                 <span className="text-blue-500 mr-4 font-mono">0{categoryIndex + 1}</span>
@@ -87,7 +89,7 @@ export default function Skills() {
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: false }}
-                        transition={{ duration: 1.5, delay: index * 0.1 + 0.3, ease: "circOut" }}
+                        transition={{ type: "spring", bounce: 0, duration: 0.85, delay: index * 0.08 + 0.2 }}
                         className="h-full bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.4)] relative"
                       >
                         <div className="absolute top-0 right-0 w-2 h-full bg-white opacity-40 blur-[1px] animate-pulse" />

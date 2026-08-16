@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "agentic-tdd": {
+      "source": "reticlehq/reticle",
+      "sourceType": "github",
+      "skillPath": "skills/agentic-tdd/SKILL.md",
+      "computedHash": "6eed98795e571f56a0c15cf89fcfefee0bcef5e1f77cadeb8ef989f758e7e16e"
+    },
+    "apple-design": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/apple-design/SKILL.md",
+      "computedHash": "0d19303902efa64eace10e6b183eb29ef3220d424c1a7fd1eafc52adde216932"
+    },
+    "debug-broken-ui": {
+      "source": "reticlehq/reticle",
+      "sourceType": "github",
+      "skillPath": "skills/debug-broken-ui/SKILL.md",
+      "computedHash": "0bbc3d0cb9be887bf4bd646277b5c9866554bcf27c3701669d678e27ce261946"
+    }
+  }
+}
